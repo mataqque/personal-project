@@ -1,0 +1,12 @@
+form {
+	// background-color: black;
+	.content-input,
+	.order {
+		position: relative;
+		@for $i from 1 through 15 {
+			&:nth-child(#{$i}) {
+				z-index: 15 - $i;
+			}
+		}
+	}
+}

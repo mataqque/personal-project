@@ -1,0 +1,44 @@
+main {
+	// --tw-contrast: contrast(2);
+	// --tw-grayscale: grayscale(0.2);
+	// --tw-brightness: brightness(0.95);
+	// filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+	// background-image: url(' https://www.ripple-ui.com/mesh.png');
+	// background-repeat: no-repeat;
+	// background-position: 100%;
+	// background-size: cover;
+	// background-attachment: fixed;
+}
+
+.targets {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	grid-gap: 1rem;
+}
+/* Define the size */
+.svg-indicator {
+	width: 100px;
+	height: 100px;
+}
+
+/* 
+ * Add the center and the radius using the size 
+ * and `stroke-width` values.
+ */
+.svg-indicator-track,
+.svg-indicator-indication {
+	cx: 50px;
+	cy: 50px;
+	r: 40px;
+	fill: transparent;
+	stroke-width: 10px;
+}
+
+/* Some color to highlight the rings */
+.svg-indicator-track {
+	stroke: #ddd;
+}
+
+.svg-indicator-indication {
+	stroke: #07c;
+}

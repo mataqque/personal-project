@@ -1,0 +1,46 @@
+.settings {
+	width: max-content;
+	.content-settings {
+		position: relative;
+		margin-right: 2rem;
+		&::before {
+			content: '';
+			position: absolute;
+			right: -1rem;
+			top: 0;
+			bottom: 0;
+			width: 1px;
+			height: 100%;
+			background-color: #e5e5e5;
+		}
+		.tab {
+			border-width: 1px;
+			border-right-width: 0;
+			&.active {
+				background-color: black;
+				color: white;
+				border-color: black;
+			}
+			&:first-child {
+				border-radius: 5px 0 0 5px;
+			}
+			&:last-child {
+				border-right-width: 1px;
+				border-radius: 0 5px 5px 0;
+			}
+		}
+	}
+}
+.content-tab {
+	.opacity {
+		opacity: 0.2;
+		filter: grayscale(1);
+	}
+	.active {
+		.opacity {
+			opacity: 1;
+			border-color: red;
+			filter: grayscale(0);
+		}
+	}
+}
