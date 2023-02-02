@@ -7,8 +7,8 @@ html {
 	height: 100%;
 }
 :root {
-	--primary: #0e0b1e;
-	--secondary: #3445b3;
+	--primary: #fb6f92;
+	--secondary: #02394a;
 	--letter: #67697d;
 	--letterInput: #959595;
 	--letterModeDark: #959595;
@@ -116,7 +116,9 @@ html {
 		display: flex;
 	}
 }
-
+.slick-disabled {
+	display: none !important;
+}
 // atributos de texto html
 .paragraph {
 	color: var(--letterModeDark);

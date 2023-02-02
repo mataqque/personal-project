@@ -1,6 +1,18 @@
 import React, { Suspense } from 'react';
 import Boundary from './Boundary';
 
+const Home = React.lazy(
+	async () =>
+		await import(/* webpackChunkName:"home" */ '../pages/Home/home').then(module => {
+			return { default: module.Home };
+		})
+);
+const PageProduct = React.lazy(
+	async () =>
+		await import(/* webpackChunkName:"account" */ '../pages/PageProduct/pageProduct').then(module => {
+			return { default: module.PageProduct };
+		})
+);
 const Account = React.lazy(
 	async () =>
 		await import(/* webpackChunkName:"account" */ '../pages/Account/Account').then(module => {
@@ -34,6 +46,16 @@ const Components = React.lazy(
 );
 
 export const PublicRoutes = {
+	Home: (
+		<Boundary>
+			<Home />
+		</Boundary>
+	),
+	Product: (
+		<Boundary>
+			<PageProduct />
+		</Boundary>
+	),
 	Account: (
 		<Boundary>
 			<Account />

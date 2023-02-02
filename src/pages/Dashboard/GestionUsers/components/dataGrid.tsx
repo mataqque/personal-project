@@ -31,32 +31,32 @@ export const GridTableUsers = () => {
 		<DataGridStyled className='table-auto w-full text-sm flex flex-col'>
 			<GridHead className='grid-column-users'>
 				<div className='px-4 py-2 text-left  '>
-					<div className='flex items-center'>
+					<div className='flex items-center text-letter'>
 						Nombre
 						<SwapVertIcon className='ml-auto cursor-pointer' />
 					</div>
 				</div>
-				<div className='px-4 py-2 text-left  '>
-					<div className='flex items-center'>Rol</div>
+				<div className='px-4 py-2 text-left text-letter'>
+					<div className='flex items-center text-letter'>Rol</div>
 				</div>
-				<div className='px-4 py-2 text-left  '>
-					<div className='flex items-center'>Email</div>
+				<div className='px-4 py-2 text-left text-letter'>
+					<div className='flex items-center text-letter'>Email</div>
 				</div>
-				<div className='px-4 py-2 text-left  '>
-					<div className='flex items-center'>Estatus</div>
+				<div className='px-4 py-2 text-left text-letter'>
+					<div className='flex items-center text-letter'>Estatus</div>
 				</div>
-				<div className='px-4 py-2 text-left  '>
-					<div className='flex items-center'>Phone</div>
+				<div className='px-4 py-2 text-left text-letter'>
+					<div className='flex items-center text-letter'>Phone</div>
 				</div>
-				<div className='px-4 py-2 text-left  '>
-					<div className='flex items-center'>Última actualización</div>
+				<div className='px-4 py-2 text-left '>
+					<div className='flex items-center text-letter'>Última actualización</div>
 				</div>
-				<div className='px-4 py-2 text-left  '>Accciones</div>
+				<div className='px-4 py-2 text-left text-letter'>Accciones</div>
 			</GridHead>
 			<GridBody className='grid grid-column-users'>
 				{fakeUsers.map((user: any, index: number) => {
 					return (
-						<div className='grid-table-row flex text-gray-700 hover:bg-gray-10 border-b border-b-stone-100 ' key={index + 'item-list'}>
+						<div className='flex text-gray-700 hover:bg-gray-10 border-b border-b-stone-100 ' key={index + 'item-list'}>
 							<div className='checked grid-table-cell py-2'>
 								<InputChecked name=''></InputChecked>
 							</div>
@@ -67,9 +67,9 @@ export const GridTableUsers = () => {
 									<p className='text-letter text-sm leading-3	'>{user.lname}</p>
 								</div>
 							</div>
-							<div className='grid-table-cell px-4 py-2 w-full flex items-center align-center'>Admin</div>
-							<div className='grid-table-cell px-4 py-2 w-full flex items-center align-center'>Flavio.mataqque@gmail.com</div>
-							<div className='grid-table-cell px-4 py-2 text-sm flex items-center align-center'>Activo</div>
+							<div className='grid-table-cell px-4 py-2 w-full flex items-center align-center text-letter'>Admin</div>
+							<div className='grid-table-cell px-4 py-2 w-full flex items-center align-center text-letter'>Flavio.mataqque@gmail.com</div>
+							<div className='grid-table-cell px-4 py-2 text-sm flex items-center align-center text-letter'>Activo</div>
 							<div className='grid-table-cell px-4 py-2 text-sm w-40 flex items-center align-center'>
 								<div className='flex'>
 									{user.tags.map((tag: any, index: number) => {
@@ -83,7 +83,7 @@ export const GridTableUsers = () => {
 									})}
 								</div>
 							</div>
-							<div className='grid-table-cell px-4 py-2 text-sm   flex items-center align-center'>{convertToDate(user.dateUpate)}</div>
+							<div className='grid-table-cell px-4 py-2 text-sm   flex items-center align-center text-letter'>{convertToDate(user.dateUpate)}</div>
 							<div className='grid-table-cell px-4 py-2 text-sm  w-40 flex items-center align-center'>
 								<div className='flex items-center align-center'>
 									<button className='p-1 flex mr-2 opacity-80	hover:opacity-100'>

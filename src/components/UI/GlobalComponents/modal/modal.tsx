@@ -66,7 +66,7 @@ export const ModalStyled = styled.div`
 		top: 1rem;
 	}
 	.content-modal {
-		width: 30rem;
+		width: max-content;
 		height: max-content;
 		position: relative;
 		padding: 2rem;

@@ -16,7 +16,17 @@ export const filesApi = createApi({
 				},
 			}),
 		}),
+		deleteFiles: builder.mutation({
+			query: ({ id, ...patch }) => ({
+				url: `/files/delete`,
+				method: 'POST',
+				body: patch,
+				headers: {
+					authorization: `Bearer ${localStorage.getItem('token')}`,
+				},
+			}),
+		}),
 	}),
 });
 
-export const { useGetFilesMutation } = filesApi;
+export const { useGetFilesMutation, useDeleteFilesMutation } = filesApi;

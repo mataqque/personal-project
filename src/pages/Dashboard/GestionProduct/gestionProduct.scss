@@ -1,0 +1,230 @@
+.gestion-products {
+	position: relative;
+	z-index: 1;
+}
+.form-add-product {
+	gap: 0 1rem;
+	.column-1 {
+		min-width: 50rem;
+		float: left;
+	}
+	.visor-img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 20rem;
+		min-height: 20rem;
+		border-radius: 1rem;
+		background-color: white;
+		margin-bottom: 1rem;
+		overflow: hidden;
+		position: relative;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center;
+		}
+	}
+}
+.gestion-links {
+	position: relative;
+	height: 100%;
+	.content-users {
+		height: 100%;
+	}
+	.content-form-group {
+		width: 100%;
+		height: 100%;
+		border-radius: 1rem;
+		padding: 1rem;
+		margin-bottom: 1rem;
+		.content-input {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 1.3rem;
+			.name {
+				margin-bottom: 0.5rem;
+			}
+			input {
+				background-color: var(--bSky);
+				padding: 1rem 1rem;
+				border-radius: 0.8rem;
+			}
+		}
+	}
+	.content-data {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	.content-group {
+		width: 100%;
+		height: 100%;
+		background-color: var(--bSky);
+		border-radius: 0.5rem;
+		padding: 1rem 1rem;
+		display: flex;
+		flex-direction: column;
+		overflow-y: auto;
+		.btn.sublinks {
+			display: none;
+			&.active {
+				display: flex;
+			}
+		}
+		.list {
+			width: 100%;
+			height: 100%;
+			&.sublinks {
+				display: flex;
+				height: 100%;
+				flex-direction: column;
+			}
+			.content-sortable {
+				overflow-y: auto;
+				width: 100%;
+				padding-bottom: 0.5rem;
+			}
+		}
+		.btn {
+			width: 100%;
+		}
+		.group-info {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			background-color: white;
+			padding: 1rem 1rem;
+			border-radius: 0.5rem;
+			box-shadow: 0px 0px 10px 0px rgba(116, 175, 252, 0.164);
+			.title-group {
+				white-space: nowrap;
+			}
+			.name {
+				width: 100%;
+			}
+			.type {
+				min-width: 5rem;
+				@media (max-width: 1400px) {
+					min-width: 4rem;
+				}
+			}
+			.actions {
+				min-width: 5rem;
+				@media (max-width: 1400px) {
+					min-width: 4rem;
+				}
+			}
+		}
+		.input-group {
+			padding: 0.5rem 0.8rem;
+			background-color: var(--bSky);
+			width: 100%;
+			border-radius: 0.5rem;
+		}
+	}
+
+	.content-group-1 {
+		min-width: 33rem;
+		width: 33rem;
+		@media (max-width: 1400px) {
+			min-width: 25rem;
+			width: 25rem;
+		}
+	}
+
+	.content-group-2 {
+		width: 100%;
+		border-radius: 0.5rem;
+		border: 1px solid #cbd6e2;
+		padding: 1rem;
+		overflow: hidden;
+		position: relative;
+		.title-group {
+			font-size: 1.4rem;
+		}
+		.d-grid {
+			display: grid;
+			gap: 0.8rem;
+			grid-row: max-content;
+			grid-template-rows: repeat(2, max-content);
+			grid-template-columns: repeat(2, calc(50% - 0.5rem));
+		}
+	}
+	.user-header {
+		.item {
+			border-bottom: 1px solid var(--borderBoton);
+		}
+		.item:nth-last-child(-n + 6) {
+			border-bottom: 1px solid var(--borderBoton);
+		}
+		.item:nth-last-child(-n + 6) {
+			border-bottom: 0;
+		}
+	}
+	.content-edit {
+		padding: 1rem;
+		background-color: red;
+		border-radius: 1rem;
+	}
+}
+.content-sortable {
+	li {
+		height: 3.5rem;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		background-color: white;
+		margin-bottom: 0.5rem;
+		padding: 0 1rem;
+		border-radius: 0.5rem;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		display: flex;
+		.name {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			line-height: 1rem;
+			word-break: break-all;
+		}
+		.type {
+			min-width: 5rem;
+			@media (max-width: 1400px) {
+				min-width: 4rem;
+			}
+		}
+		.actions {
+			min-width: 5rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			@media (max-width: 1400px) {
+				min-width: 4rem;
+			}
+		}
+		.draggable {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			.text {
+				user-select: none;
+				pointer-events: none;
+				width: 100%;
+				@media (max-width: 1400px) {
+					font-size: 0.9rem;
+					line-height: 1rem;
+				}
+			}
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

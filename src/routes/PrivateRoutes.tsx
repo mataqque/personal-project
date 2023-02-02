@@ -31,6 +31,18 @@ const GestionUsers = lazy(
 			return { default: module.default };
 		})
 );
+const GestionProducts = lazy(
+	async () =>
+		await import(/* webpackChunkName:"GestionProducts" */ '../pages/Dashboard/GestionProducts/gestionProducts').then(module => {
+			return { default: module.GestionProducts };
+		})
+);
+const GestionProduct = lazy(
+	async () =>
+		await import(/* webpackChunkName:"GestionProduct" */ '../pages/Dashboard/GestionProduct/gestionProduct').then(module => {
+			return { default: module.GestionProduct };
+		})
+);
 
 function Component(props: Props) {
 	return (
@@ -49,6 +61,16 @@ export const PrivateRoutes = {
 	FileManager: (
 		<Component>
 			<FileManager />
+		</Component>
+	),
+	GestionProducts: (
+		<Component>
+			<GestionProducts />
+		</Component>
+	),
+	GestionProduct: (
+		<Component>
+			<GestionProduct />
 		</Component>
 	),
 	GestionUser: (

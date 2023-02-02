@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import 'react-loading-skeleton/dist/skeleton.css';
 
+interface IButtonBase {
+	rounded?: boolean;
+}
+
 export const ButtonBase = styled.button`
 	height: ${(props: any) => {
 		if (props.type === 'sm') return '1.5rem';
@@ -9,7 +13,9 @@ export const ButtonBase = styled.button`
 		return '2.5rem'; // valor por defecto si no se especifica type
 	}};
 	width: max-content;
-	border-radius: 7px;
+	border-radius: ${(props: IButtonBase) => {
+		return props.rounded ? '100rem' : '7px';
+	}};
 	border-width: 1px;
 	border-style: solid;
 	display: flex;

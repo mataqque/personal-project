@@ -11,7 +11,7 @@ export const InputText = (props: IInputProps) => {
 		<div className={`content-input  ${rest?.className ? rest.className : ''}`}>
 			{title && <label>{title}</label>}
 			<div className={`content-sub-input ${props.icon ? 'include-icon' : ''}`}>
-				<InputTextStyled type={props.type || 'text'} placeholder={placeholder || ''} {...setInputProps(name, `input`, form)} />
+				<InputTextStyled type={props.type || 'text'} placeholder={placeholder || ''} defaultValue={rest.defaultValue} {...setInputProps(name, `input`, form)} />
 				{props.icon && <IconInput icon={props.icon}></IconInput>}
 				<img className='icon-valid' src={require('../../../assets/images/Account/icons/check.png')}></img>
 				<img className='icon-error' src={require('../../../assets/images/Account/icons/error.png')}></img>

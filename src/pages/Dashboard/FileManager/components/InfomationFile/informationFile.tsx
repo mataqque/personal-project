@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 export const InformationFile = () => {
 	const fileSelected: IFile = useSelector((state: any) => state.fileManagerSlice.selectFile);
-	console.log(fileSelected);
 
 	if (JSON.stringify(fileSelected) === '{}') {
 		return (
@@ -19,16 +18,12 @@ export const InformationFile = () => {
 	return (
 		<div className='content-info'>
 			<div className='content-img skeleton-default'>
-				{/* {
-                    file.collection_name == 'image' ? 
-                    <Imagen file={file}></Imagen>: null
-                }
-                {
-                    file.collection_name == 'video' ?  
-                        <video controls>
-                            <source src={file.dir+"/"+file.file_name} type="video/mp4"></source>
-                        </video> :  null
-                } */}
+				{file.collection_name == 'image' ? <Imagen file={file}></Imagen> : null}
+				{file.collection_name == 'video' ? (
+					<video controls>
+						<source src={file.dir + '/' + file.file_name} type='video/mp4'></source>
+					</video>
+				) : null}
 			</div>
 			<span className='name-file bold'>Información</span>
 			<div className='content-array-info scrollHidden'>

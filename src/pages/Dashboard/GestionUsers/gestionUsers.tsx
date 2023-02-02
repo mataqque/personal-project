@@ -17,10 +17,10 @@ function GestionUsuarios(props: any) {
 	useEffect(() => {}, []);
 	return (
 		<div className='features bg-white'>
-			<Title className='title-component bold'>Gestión de usuarios</Title>
+			<Title className='title-component bold mb-3'>Gestión de usuarios</Title>
 			<span className='mb-3 text-primary'>Gestiona las rol que los usuarios</span>
 			<div className='global-actions flex items-center mb-4'>
-				<span className='mr-8 text-info IBMPlexSans-Bold'>6 Items seleccionados</span>
+				<span className='mr-8 text-info IBMPlexSans-Bold '>6 Items seleccionados</span>
 				<ButtonBase className='mr-2 border-bordersky'>Exportar</ButtonBase>
 				<ButtonBase className='mr-2 border-bordersky'>Archivar</ButtonBase>
 				<ButtonBase className='mr-2 border-bordersky'>Eliminar</ButtonBase>

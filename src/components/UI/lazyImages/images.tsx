@@ -49,15 +49,14 @@ export const LazyImage = (props: IImageProps) => {
 			const imageToLoad = new Image();
 			imageToLoad.src = routeFile;
 			imageToLoad.onload = (e: any) => {
-				console.log('first load image');
 				setLoadImage(true);
 			};
 		}
 	};
 	useEffect(() => {
 		const options = {
-			root: document.querySelector('.content-all-images'),
-			rootMargin: '28%',
+			root: null,
+			rootMargin: '',
 			threshold: 1.0,
 		};
 		const observer = new IntersectionObserver(LoadImage, options);

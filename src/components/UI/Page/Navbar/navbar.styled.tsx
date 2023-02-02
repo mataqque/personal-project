@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ContainerNavStyled = styled.nav`
@@ -9,8 +9,6 @@ const ContainerNavStyled = styled.nav`
 	right: 0;
 	z-index: 20;
 	transition: 0.3s;
-	background-color: #0e0b1e;
-	height: var(--heightNav);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -19,10 +17,22 @@ const ContainerNavStyled = styled.nav`
 	a:hover {
 		text-decoration: none;
 	}
+	.component-nav {
+		display: flex;
+		align-items: center;
+		background-color: var(--secondary);
+		height: var(--heightNav);
+	}
 	.nav-container {
+		height: calc(100% - 1.8rem);
 		display: flex;
 	}
 	.link {
+		height: 100%;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		justify-content: center;
 		.line {
 			width: 0%;
 			height: 2px;
@@ -31,6 +41,7 @@ const ContainerNavStyled = styled.nav`
 			display: flex;
 			position: relative;
 			bottom: -3px;
+			transform-origin: left;
 		}
 		&.active {
 			.line {
@@ -41,7 +52,7 @@ const ContainerNavStyled = styled.nav`
 		}
 	}
 	&.active {
-		box-shadow: 0px 0px 23px 0px #160f2d;
+		0px 0px 23px 0px #ff7b87d4;
 	}
 	.link {
 		&:hover {
@@ -63,8 +74,18 @@ export const ContainerNav = (props: IPropsContainerNav) => {
 		};
 	}, []);
 	return (
-		<ContainerNavStyled className={`${activeNavScrolled == true ? 'active' : ''}`}>
-			<div className='container nav-container'>{props.children}</div>
+		<ContainerNavStyled className={`nav flex flex-col ${activeNavScrolled == true ? 'active' : ''}`}>
+			<div className='w-full bg-primary py-2'>
+				<div className='container text-white flex items-center justify-center'>
+					<div className='mr-4'>Aprovecha las promociones y descuentos que tenemos para tí</div>
+					<Link to='/account/register' className='rounded-full h-max text-primary border-white bg-white  mr-2 px-5 py-2 whitespace-nowrap'>
+						Descuentos
+					</Link>
+				</div>
+			</div>
+			<div className='w-full component-nav'>
+				<div className='container nav-container'>{props.children}</div>
+			</div>
 		</ContainerNavStyled>
 	);
 };

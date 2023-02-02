@@ -2,33 +2,30 @@ import './modalUpload.scss';
 import { useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveModal, updateFile, selectFile, uploadFiles } from './FileManagerSlice';
+import { setActiveModal, updateFile, selectFile, uploadFiles } from '../../pages/Dashboard/FileManager/FileManagerSlice';
 import axios from 'axios';
 import { bytesToSize, generateId } from '../helpers/helpers';
 import { IconMask } from '../UI/inputs/styled/IconDownStyleSelect';
+import { useGetFilesMutation } from '../../pages/Dashboard/FileManager/FileManager.api';
+import { IFileState } from '../../pages/Dashboard/FileManager/interface/Interface';
+import { HandleResponse } from '../../helpers/helpers';
+
+interface IFiles {
+	uuid: number | string;
+	file: any;
+	uploaded: boolean | string;
+	cancel: any;
+}
 
 export default function ModalUpload(props: any) {
 	const dispatch = useDispatch();
+	const [getFiles, { isSuccess }] = useGetFilesMutation();
 	const activeModal = useSelector((state: any) => state.fileManagerSlice.activeModal);
 	const [preFiles, setPreviousFiles] = useState([]);
-
-	const updateFiles = (type_file: any) => {
-		axios
-			.get(`http://localhost:3000/api/v1/files/getFiles/${type_file}`, {
-				headers: {
-					Authorization: `Bearer ${localStorage.getItem('token')}`,
-				},
-			})
-			.then((res: any) => {
-				dispatch(updateFile(res.data));
-			});
+	const UpdateFiles = (response: IFileState) => {
+		dispatch(updateFile(response));
 	};
-	interface IFiles {
-		uuid: number | string;
-		file: any;
-		uploaded: boolean | string;
-		cancel: any;
-	}
+
 	const onDrop = (Files: any) => {
 		const arrayFiles = Files.map((file: any, index: number): IFiles => {
 			return {
@@ -87,11 +84,12 @@ export default function ModalUpload(props: any) {
 					.catch(err => {
 						console.log(err);
 					})
-					.then(res => {
-						let delay = setInterval(() => {
-							updateFiles('all');
+					.then(async (res: any) => {
+						let delay = setInterval(async () => {
+							const { data }: any = await getFiles('all');
+							HandleResponse(UpdateFiles, data);
 							clearInterval(delay);
-						}, 1000);
+						}, 2000);
 					});
 			}
 		});

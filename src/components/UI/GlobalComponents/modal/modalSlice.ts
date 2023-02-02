@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { disableCheckables } from '../../../helpers/helpers';
 
 const modalSlice = createSlice({
 	name: 'modal',
@@ -8,9 +9,9 @@ const modalSlice = createSlice({
 	reducers: {
 		closeModal: state => {
 			state.modalActive = 'close';
+			disableCheckables('.component_file_manager');
 		},
 		openModal: state => {
-			console.log('openModal');
 			state.modalActive = 'open';
 		},
 	},

@@ -1,0 +1,42 @@
+.dragged-sortableElement {
+	.draggable {
+		width: 100%;
+		.name {
+		}
+	}
+	.actions {
+		display: flex;
+		align-items: center;
+		width: 4.5rem;
+	}
+}
+.dragged {
+	z-index: 2;
+	background-color: white;
+	border-radius: 0.5rem;
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+	box-shadow: 0px 0px 10px 0px rgb(206, 228, 228);
+	.draggable {
+		display: flex;
+		align-items: center;
+	}
+	.icon {
+		opacity: 0;
+	}
+	.name {
+		min-width: 14rem;
+	}
+	.type {
+		min-width: 5rem;
+	}
+}
+.input-radio-visor {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+.input-radio-visor:checked ~ label {
+	color: var(--info);
+}

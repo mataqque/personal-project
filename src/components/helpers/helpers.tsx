@@ -1,3 +1,5 @@
+import { IFile } from '../../pages/Dashboard/FileManager/interface/Interface';
+
 // sortable
 interface InterfaceonSortEnd {
 	oldIndex: number;
@@ -20,9 +22,10 @@ export const generateId = ({ type }: { type: string }): number | string => {
 	return typeid[type as keyof TypeGeneric] || typeIdDefault;
 };
 
-export const generateUrl = (props: any) => {
+export const generateUrl = (props: IFile) => {
+	const { file_name, dir } = props;
 	let path = window.location.origin;
-	let url = path + props.dir + '/' + props.file_name;
+	let url = path + dir + '/' + file_name;
 	return url;
 };
 
@@ -114,10 +117,18 @@ export const verifyExtension = (file: any) => {
 		return 'file.png';
 	}
 };
+export const dispatchEvent = (element: any, event: any, value: string) => {
+	element.setAttribute('value', value);
+	element.dispatchEvent(new Event(event, { bubbles: true }));
+};
+export const dispatchEventChecked = (element: any, event: any, value: string) => {
+	element.setAttribute('checked', value);
+	element.dispatchEvent(new Event(event, { bubbles: true }));
+};
 
-export const getCheckables = () => {
+export const getCheckables = (container: string) => {
 	// get values of checked checkboxes
-	const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll('input[type="checkbox"]');
+	const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(`${container} input[type="checkbox"]`);
 	const values = [];
 	for (let i = 0; i < checkboxes.length; i++) {
 		if (checkboxes[i].checked) {
@@ -125,6 +136,13 @@ export const getCheckables = () => {
 		}
 	}
 	return values;
+};
+
+export const disableCheckables = (container: string) => {
+	const checkboxes: NodeListOf<HTMLInputElement> = document.querySelectorAll(`${container} input[type="checkbox"]`);
+	checkboxes.forEach(e => {
+		e.checked = false;
+	});
 };
 
 export const checkAllChecbox = (ElementContent: string) => {

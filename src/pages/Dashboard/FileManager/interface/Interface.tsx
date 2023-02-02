@@ -6,8 +6,9 @@ export const searchSchema = (values: any) =>
 	});
 
 export interface IFile {
-	uuid: 'r2w16kqjprc';
 	id: number;
+	id_selected: string;
+	uuid: 'r2w16kqjprc';
 	collection_name: string;
 	compress: string;
 	dir: string;

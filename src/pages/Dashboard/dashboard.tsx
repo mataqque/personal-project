@@ -13,6 +13,8 @@ import './dashboard.scss';
 import { useState } from 'react';
 import { IconMask } from '../../components/UI/inputs/styled/IconDownStyleSelect';
 import ModalUpload from '../../components/modalUpload/modalUpload';
+import { FileManager } from './FileManager/FileManager';
+import { Modal } from '../../components/UI/GlobalComponents/modal/modal';
 
 function Dashboard(props: any) {
 	const navigate = useNavigate();
@@ -42,6 +44,9 @@ function Dashboard(props: any) {
 		<>
 			<main className='dashboard' key={'dash'}>
 				<ModalUpload></ModalUpload>
+				<Modal>
+					<FileManager modal={true} />
+				</Modal>
 				<div className='content-dashboard'>
 					<div className={`envolves ${statetoggleSideBar ? '' : 'close'}`}>
 						<div className='content-sidebar'>
@@ -157,7 +162,7 @@ function SectionSidebar(props: any) {
 							>
 								<i className={section.icon}></i>
 								<span className='span-title'>{section.title}</span>
-								<IconMask className='icon-signal-rigth' />
+								<IconMask className='icon-signal-right' />
 							</Link>
 						);
 					} else {
@@ -168,7 +173,7 @@ function SectionSidebar(props: any) {
 										<label className={`c-sidebar-nav-title ${props.expanded == section.index ? 'active-nav' : ''}`}>
 											<i className={section.icon}></i>
 											<span className='span-title'>{section.title}</span>
-											<IconMask className='icon-signal-rigth' />
+											<IconMask className='icon-signal-right' />
 										</label>
 									</Typography>
 								</AccordionSummary>

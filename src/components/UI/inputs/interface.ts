@@ -36,12 +36,12 @@ export interface IInputPropsPassword extends IInputProps {
 export interface ISelectProps {
 	name: string;
 	form: any;
+	label: string;
+	data: { value: string; label: string }[];
 	title?: string;
 	defaultValue?: any;
 	className?: string;
 	icon?: any;
-	label: string;
-	data: { value: string; label: string }[];
 	color?: string;
 }
 // interface for input select

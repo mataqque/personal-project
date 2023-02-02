@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { verifyExtension } from '../../../../../components/helpers/helpers';
 import Skeleton from 'react-loading-skeleton';
-import { selectFile } from '../../../../../components/modalUpload/FileManagerSlice';
+import { selectFile } from '../../FileManagerSlice';
+import { LazyImage } from '../../../../../components/UI/lazyImages/images';
 
 export function File(props: any) {
 	const { file, index } = props;
@@ -14,6 +15,7 @@ export function File(props: any) {
 		return filename?.split('.').pop().toUpperCase();
 	};
 	const routeFile = file.dir + '/' + verifyExtension(file);
+	// console.log(routeFile);
 	const event = (e: any) => {
 		if (e[0].isIntersecting == true) {
 			const imageToLoad = new Image();
@@ -23,23 +25,12 @@ export function File(props: any) {
 			};
 		}
 	};
-	useEffect(() => {
-		if (Element.current) {
-			const options = {
-				root: document.querySelector('.content-all-images'),
-				rootMargin: '28%',
-				threshold: 1.0,
-			};
-			const observer = new IntersectionObserver(event, options);
-			observer.observe(Element.current);
-		}
-	});
 
 	return (
-		<div className='content-file' ref={Element}>
-			<input type='checkbox' id={file.uuid} value={file.uuid} />
-			<label className={`file flex flex-col ${file?.selected ? 'active' : ''}`} htmlFor={file.uuid}>
-				{file.collection_name == 'image' ? <div className='content-img'>{loadImage == false ? <Skeleton /> : <img className='img' src={routeFile}></img>}</div> : null}
+		<div className='content-file'>
+			<input type='checkbox' id={file.uuid + (props.modal == true ? '-modal' : '')} value={file.uuid} />
+			<label className={`file flex flex-col ${file?.selected ? 'active' : ''}`} htmlFor={file.uuid + (props.modal == true ? '-modal' : '')}>
+				{file.collection_name == 'image' ? <LazyImage src={routeFile} radius='0px'></LazyImage> : null}
 				{file.collection_name == 'documento' || file.collection_name == 'video' ? (
 					<div className='content-img gradient'>
 						<div className='doc'>

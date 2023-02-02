@@ -1,17 +1,13 @@
 import { ISelectProps } from './interface';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { setInputProps } from '../../helpers/common/forms/Form';
 import { ContentOptions, InputSelectStyled } from './styled/inputSelect.styled';
 import { IconInput, IconInputSelect } from './iconInputs';
 import down from './icons/down.svg?url';
-
-const dispatchEvent = (element: any, event: any, value: string) => {
-	element.setAttribute('value', value);
-	element.dispatchEvent(new Event(event, { bubbles: true }));
-};
+import { dispatchEvent } from '../../helpers/helpers';
 
 export const InputSelect = (props: ISelectProps) => {
-	const { title, name, label, form, color, ...rest } = props;
+	const { title, name, label, form, color, defaultValue, ...rest } = props;
 	const [showOptions, setShowOptions] = useState<unknown>('');
 	const [valueSelect, setValueSelect] = useState<string>(label || '');
 	const InputRef = useRef<HTMLInputElement>(null);
@@ -26,11 +22,19 @@ export const InputSelect = (props: ISelectProps) => {
 	const openOptions = () => {
 		setShowOptions(!showOptions);
 	};
+	// useEffect(() => {
+	// 	console.log(`field ${name}:`, rest);
+	// 	rest.data.filter((item: any) => {
+	// 		if (item.value == defaultValue) {
+	// 			setValueSelect(item.label);
+	// 		}
+	// 	});
+	// }, [defaultValue]);
 	return (
 		<div className={`content-input ${rest?.className ? rest.className : ''}`}>
 			{title && <label>{title}</label>}
 			<div className={`content-sub-input ${props.icon ? 'include-icon' : ''}`}>
-				<InputSelectStyled type='text' {...setInputProps(name, `input input-select`, form)} ref={InputRef} />
+				<InputSelectStyled type='text' {...setInputProps(name, `input input-select`, form)} ref={InputRef} defaultValue={defaultValue} />
 				<div className='input select-none' onClick={() => openOptions()}>
 					{valueSelect}
 				</div>

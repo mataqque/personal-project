@@ -83,6 +83,12 @@ export const Options = styled.div`
 export const InputSelectStyled = styled.input`
 	width: 100%;
 	user-select: none;
+	&.--invalid ~ .input {
+		border-color: red !important;
+	}
+	&.--valid ~ .input {
+		border-color: var(--success) !important;
+	}
 `;
 
 export const ContentOptions = (props: any) => {

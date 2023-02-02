@@ -10,6 +10,7 @@ import { InputCheckedStyled } from '../inputs/styled/InputChecked';
 import { useRef } from 'react';
 import { GridHead } from './dataGridHead';
 import { GridBody } from './dataGridBody';
+import { GridFooter } from './dataGridFooter';
 
 interface IPropsDataGrid {
 	data: any;
@@ -44,6 +45,7 @@ export const DataGrid = (props: IPropsDataGrid) => {
 				<div className='px-4 py-2 text-left  '>Accciones</div>
 			</GridHead>
 			<GridBody></GridBody>
+			<GridFooter data=''></GridFooter>
 		</DataGridStyled>
 	);
 };
