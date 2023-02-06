@@ -11,12 +11,17 @@ import './gestionProduct.scss';
 import { AddImages } from './components/addImages';
 import { InputSelect } from '../../../components/UI/inputs/inputSelect';
 import { ButtonBase } from '../../../components/UI/GlobalComponents/buttons/buttonBase';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useGetListProductMutation } from './gestionApiProduct';
 import { useEffect, useState } from 'react';
 import { IProductSchema } from './interface';
+import { modifyListImages } from './components/addImagesSlice';
+import { IFile } from '../FileManager/interface/Interface';
+import { AddImages2 } from './components/addImages2';
 export const GestionProduct = () => {
-	const id = useParams<{ id: string }>().id || generateId({ type: 'number' }).toString();
+	const dispatch = useDispatch();
+	const id_generated = generateId({ type: 'number' }).toString();
+	const id = useParams<{ id: string }>().id;
 	const [getProduct, { isSuccess }] = useGetListProductMutation();
 	const statusOptions = [
 		{ value: '1', label: 'Activo' },
@@ -28,7 +33,7 @@ export const GestionProduct = () => {
 	];
 	const categoryOptions = [{ value: '1', label: 'Osos' }];
 	const [initialValues, setInitialValues] = useState<IProductSchema>({
-		uuid_product: id,
+		uuid_product: id || id_generated,
 		uuid_autor: 'Flavio',
 		name_product: '',
 		description: '',
@@ -51,23 +56,24 @@ export const GestionProduct = () => {
 		meta_keywords: '',
 	});
 	const submitForm = (values: any) => {
-		// const images = useSelector((state: any) => state.addImagesSlice.listImages);
-		// values.images = images;
-		// setInitialValues(values[0]);
 		console.log(values);
 	};
 	const getHtmlofEditor = (html: string) => {};
 	const getDataProduct = async () => {
 		const data: any = await getProduct({ id });
+		console.log('product', data);
 		setInitialValues(data.data[0]);
+		// dispatch(modifyListImages(data.data[0].images));
 	};
 	useEffect(() => {
-		getDataProduct();
+		if (id != undefined) {
+			getDataProduct();
+		}
 	}, []);
 	return (
 		<main className='features bg-white gestion-products'>
 			<Title className='bold mb-3 text-letter'>
-				Gestión de producto: <span className='text-letter'>{id}</span>
+				Gestión del producto: <span className='text-letter'>{id || id_generated}</span>
 			</Title>
 			<FormContainer initialValues={initialValues} validationSchema={ProductSchema} onSubmit={submitForm}>
 				{(form: any) => {
@@ -117,7 +123,9 @@ export const GestionProduct = () => {
 									</div>
 								</div>
 								<div className='column-2 form-style gestion-links d-flex flex-wrap scroll h-full'>
-									<AddImages></AddImages>
+									{/* <AddImages defaultImages={initialValues.images}></AddImages> */}
+									<AddImages2 imagesInit={initialValues.images} />
+									{/* <Prove defaultImages={initialValues.images}></Prove> */}
 								</div>
 								<div className='column-3 form-style gestion-links d-flex flex-wrap scroll h-full w-full'>
 									<div className='mb-4 w-full'>

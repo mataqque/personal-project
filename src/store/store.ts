@@ -8,7 +8,8 @@ import { filesApi } from '../pages/Dashboard/FileManager/FileManager.api';
 import modalSlice from '../components/UI/GlobalComponents/modal/modalSlice';
 import addImagesSlice from '../pages/Dashboard/GestionProduct/components/addImagesSlice';
 import { gestionApiProduct } from '../pages/Dashboard/GestionProduct/gestionApiProduct';
-const middleware = [account.middleware, authApi.middleware, filesApi.middleware, gestionApiProduct.middleware];
+import { gestionProductsApi } from '../pages/Dashboard/GestionProducts/gestionProductsApi';
+const middleware = [account.middleware, authApi.middleware, filesApi.middleware, gestionApiProduct.middleware, gestionProductsApi.middleware];
 
 export const store = configureStore({
 	reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
 		addImagesSlice: addImagesSlice,
 		//self reducers
 		fileManagerSlice: FileManagerSlice,
+		[gestionProductsApi.reducerPath]: gestionProductsApi.reducer,
 		[authApi.reducerPath]: authApi.reducer,
 		[account.reducerPath]: account.reducer,
 		[filesApi.reducerPath]: filesApi.reducer,

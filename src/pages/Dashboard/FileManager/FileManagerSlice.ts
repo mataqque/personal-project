@@ -35,6 +35,7 @@ const fileManagerSlice = createSlice({
 					return file;
 				}
 			});
+			console.log(getFileSelected);
 			state.selectFile = getFileSelected;
 			// let delay = setInterval(() => {
 			// 	state.selectFile = [];

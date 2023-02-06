@@ -22,14 +22,13 @@ export const InputSelect = (props: ISelectProps) => {
 	const openOptions = () => {
 		setShowOptions(!showOptions);
 	};
-	// useEffect(() => {
-	// 	console.log(`field ${name}:`, rest);
-	// 	rest.data.filter((item: any) => {
-	// 		if (item.value == defaultValue) {
-	// 			setValueSelect(item.label);
-	// 		}
-	// 	});
-	// }, [defaultValue]);
+	useEffect(() => {
+		rest.data.filter((item: any) => {
+			if (item.value == defaultValue) {
+				setValueSelect(item.label);
+			}
+		});
+	}, [defaultValue]);
 	return (
 		<div className={`content-input ${rest?.className ? rest.className : ''}`}>
 			{title && <label>{title}</label>}

@@ -12,25 +12,31 @@ import './gridtableproducts.scss';
 import { LazyImage } from '../../../../../components/UI/lazyImages/images';
 import { Status } from '../status/status';
 import { GridFooter } from '../../../../../components/UI/dataGrid/dataGridFooter';
-export const DataGridTableProducts = () => {
-	let statusDiccionary = ['activo', 'inactivo', 'pendiente', 'rechazado', 'aprobado'];
-	const createUser = () => {
-		return {
-			name: faker.name.findName(),
-			lname: faker.name.lastName(),
-			image: faker.image.avatar(),
-			dateUpate: faker.date.past(),
-			percent: faker.random.numeric(2),
-			color: 'hsla(' + Math.random() * 360 + ', 100%, 50%, 1)',
-			status: statusDiccionary[Math.floor(Math.random() * statusDiccionary.length)],
-			tags: faker.random.words(2).split(' '),
-		};
-	};
+import { useEffect } from 'react';
+import { IProductSchema } from '../../../GestionProduct/interface';
+import { generateUrl } from '../../../../../components/helpers/helpers';
+// let statusDiccionary = ['activo', 'inactivo', 'pendiente', 'rechazado', 'aprobado'];
+// const createUser = () => {
+// 	return {
+// 		name: faker.name.findName(),
+// 		lname: faker.name.lastName(),
+// 		image: faker.image.avatar(),
+// 		dateUpate: faker.date.past(),
+// 		percent: faker.random.numeric(2),
+// 		color: 'hsla(' + Math.random() * 360 + ', 100%, 50%, 1)',
+// 		status: statusDiccionary[Math.floor(Math.random() * statusDiccionary.length)],
+// 		tags: faker.random.words(2).split(' '),
+// 	};
+// };
 
-	const createUsers = (numUsers = 5) => {
-		return Array.from({ length: numUsers }, createUser);
-	};
-	const fakeUsers = createUsers(0);
+// const createUsers = (numUsers = 5) => {
+// 	return Array.from({ length: numUsers }, createUser);
+// };
+// const fakeUsers = createUsers(0);
+export const DataGridTableProducts = (data: any) => {
+	console.log('datagrid', data);
+
+	useEffect(() => {}, [data]);
 	return (
 		<DataGridStyled className='table-auto w-full text-sm flex flex-col'>
 			<GridHead className='grid-column-products'>
@@ -52,7 +58,7 @@ export const DataGridTableProducts = () => {
 				<div className='px-4 py-2 text-left  '>Accciones</div>
 			</GridHead>
 			<GridBody className='grid grid-column-products'>
-				{fakeUsers.map((user: any, index: number) => {
+				{data.data.map((product: IProductSchema, index: number) => {
 					return (
 						<div className='border-b border-b-stone-100 ' key={index + 'item-list'}>
 							<div className='checked grid-table-cell py-2'>
@@ -60,18 +66,18 @@ export const DataGridTableProducts = () => {
 							</div>
 							<div className='grid-table-cell px-4 py-2 flex items-center'>
 								<div className='content-img w-10 h-10 relative'>
-									<LazyImage src={user.name} radius='3px' />
+									<LazyImage src={generateUrl(product.images[0])} radius='3px' />
 								</div>
 								<div className='flex flex-col ml-4'>
-									<h1 className='text-letter text-base leading-4 mb-1  '>{user.name}</h1>
-									<p className='text-letter text-sm leading-3	'>{user.lname}</p>
+									<h1 className='text-letter text-base leading-4 mb-1  '>{product.name_product}</h1>
+									<p className='text-letter text-sm leading-3	'>{product.name_product}</p>
 								</div>
 							</div>
-							<div className='grid-table-cell px-4 py-2 w-full flex items-center align-center text-letter'>Sweet Importador de peluches</div>
+							{/* <div className='grid-table-cell px-4 py-2 w-full flex items-center align-center text-letter'>Sweet Importador de peluches</div>
 							<div className='grid-table-cell px-4 py-2 text-sm flex items-center align-center text-letter'>
-								<Status status={user.status} />
+								<Status status={'desconocido'} />
 							</div>
-							<div className='grid-table-cell px-4 py-2 text-sm   flex items-center align-center text-letter'>{convertToDate(user.dateUpate)}</div>
+							<div className='grid-table-cell px-4 py-2 text-sm   flex items-center align-center text-letter'>{convertToDate(product.dateUpate)}</div>
 							<div className='grid-table-cell px-4 py-2 text-sm  w-40 flex items-center align-center'>
 								<div className='flex items-center align-center'>
 									<button className='p-1 flex mr-2 opacity-80	hover:opacity-100'>
@@ -81,7 +87,7 @@ export const DataGridTableProducts = () => {
 										<IconMask className='icon-delete bg-danger w-5 h-5 ' />
 									</button>
 								</div>
-							</div>
+							</div> */}
 						</div>
 					);
 				})}

@@ -7,8 +7,7 @@ export const searchSchema = (values: any) =>
 
 export interface IFile {
 	id: number;
-	id_selected: string;
-	uuid: 'r2w16kqjprc';
+	uuid: string;
 	collection_name: string;
 	compress: string;
 	dir: string;
@@ -16,8 +15,9 @@ export interface IFile {
 	file_name: string;
 	mime_type: string;
 	size: number;
-	updated_at: Date;
-	created_at: Date;
+	updated_at: string;
+	created_at: string;
+	id_selected?: string;
 }
 export interface IFileState {
 	files: IFile[];

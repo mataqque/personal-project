@@ -6,9 +6,21 @@ import { DataGridTableProducts } from './components/gridTableProducts/gridTableP
 import { FormSearch } from '../FileManager/components/FormSearch/FormSearch';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useGetListProductsMutation } from './gestionProductsApi';
+import { HandleResponse } from '../../../helpers/helpers';
 export const GestionProducts = () => {
-	const dispatch = useDispatch();
+	const [data, setData] = useState([]);
+	const [getList, {}] = useGetListProductsMutation();
 	const deleteFiles = () => {};
+	const update = async () => {
+		let data: any = await getList({});
+		console.log(data);
+		setData(data.data.data);
+	};
+	useEffect(() => {
+		update();
+	}, []);
 	return (
 		<main className='features bg-white gestion-products'>
 			<Title className='bold mb-3 text-gray'>Gestión de productos</Title>
@@ -34,7 +46,7 @@ export const GestionProducts = () => {
 					</div>
 				</div>
 			</div>
-			<DataGridTableProducts />
+			<DataGridTableProducts data={data} />
 		</main>
 	);
 };

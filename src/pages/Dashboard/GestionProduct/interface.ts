@@ -1,3 +1,5 @@
+import { IFile } from '../FileManager/interface/Interface';
+
 export interface IProductSchema {
 	uuid_product: string;
 	uuid_autor: string;
@@ -13,7 +15,7 @@ export interface IProductSchema {
 	quantity: string;
 	price: string;
 	discount: string;
-	images: Array<object>;
+	images: IFile[];
 	videos: Array<object>;
 	url: string;
 	status: boolean;
