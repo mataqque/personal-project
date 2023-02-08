@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Title } from '../StyledComponent/titles';
 import { generateId } from '../../../components/helpers/helpers';
 import { FormContainer } from '../../../components/helpers/common/forms/Form';
@@ -12,17 +12,20 @@ import { AddImages } from './components/addImages';
 import { InputSelect } from '../../../components/UI/inputs/inputSelect';
 import { ButtonBase } from '../../../components/UI/GlobalComponents/buttons/buttonBase';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetListProductMutation } from './gestionApiProduct';
+import { useGetListProductMutation, useUpdateProductMutation } from './gestionApiProduct';
 import { useEffect, useState } from 'react';
 import { IProductSchema } from './interface';
 import { modifyListImages } from './components/addImagesSlice';
 import { IFile } from '../FileManager/interface/Interface';
-import { AddImages2 } from './components/addImages2';
+import { HandleResponse, ToastNotifyPromise } from '../../../helpers/helpers';
 export const GestionProduct = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const images = useSelector((state: any) => state.addImagesSlice.listImages);
 	const id_generated = generateId({ type: 'number' }).toString();
 	const id = useParams<{ id: string }>().id;
 	const [getProduct, { isSuccess }] = useGetListProductMutation();
+	const [updateProduct, {}] = useUpdateProductMutation();
 	const statusOptions = [
 		{ value: '1', label: 'Activo' },
 		{ value: '0', label: 'Inactivo' },
@@ -34,7 +37,7 @@ export const GestionProduct = () => {
 	const categoryOptions = [{ value: '1', label: 'Osos' }];
 	const [initialValues, setInitialValues] = useState<IProductSchema>({
 		uuid_product: id || id_generated,
-		uuid_autor: 'Flavio',
+		uuid_autor: '1675838495788',
 		name_product: '',
 		description: '',
 		id_empresa: '',
@@ -55,15 +58,27 @@ export const GestionProduct = () => {
 		meta_description: '',
 		meta_keywords: '',
 	});
-	const submitForm = (values: any) => {
-		console.log(values);
+	const submitForm = async (values: any) => {
+		let dataProduct = JSON.parse(JSON.stringify(values));
+		dataProduct.images = images;
+		ToastNotifyPromise({ message: 'Producto actualizado 🎁👌', promise: updateProduct(dataProduct) });
 	};
 	const getHtmlofEditor = (html: string) => {};
+
+	const handleResponse = (data: any) => {
+		setInitialValues(data[0]);
+		let images = data[0].images.map((image: IFile) => {
+			// add id_selected to images
+			return { ...image, id_selected: generateId({ type: 'string' }).toString() };
+		});
+		dispatch(modifyListImages(images));
+	};
+	const handleErrorHttp = (error: any) => {
+		navigate('/dashboard/gestion-products');
+	};
 	const getDataProduct = async () => {
-		const data: any = await getProduct({ id });
-		console.log('product', data);
-		setInitialValues(data.data[0]);
-		// dispatch(modifyListImages(data.data[0].images));
+		const { data }: any = await getProduct({ id });
+		HandleResponse(handleResponse, data, handleErrorHttp);
 	};
 	useEffect(() => {
 		if (id != undefined) {
@@ -123,9 +138,7 @@ export const GestionProduct = () => {
 									</div>
 								</div>
 								<div className='column-2 form-style gestion-links d-flex flex-wrap scroll h-full'>
-									{/* <AddImages defaultImages={initialValues.images}></AddImages> */}
-									<AddImages2 imagesInit={initialValues.images} />
-									{/* <Prove defaultImages={initialValues.images}></Prove> */}
+									<AddImages />
 								</div>
 								<div className='column-3 form-style gestion-links d-flex flex-wrap scroll h-full w-full'>
 									<div className='mb-4 w-full'>

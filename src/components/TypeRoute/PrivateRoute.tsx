@@ -7,9 +7,12 @@ import { PrivateRouteProps } from './interface/privateRoute';
 import { Loader } from '../UI/loaderPage/loader';
 import { useVerifyTokenMutation } from '../../store/apis/authApi.api';
 import { callbackDelay } from '../../helpers/helpers';
+import { clearAddImages } from '../../pages/Dashboard/GestionProduct/components/addImagesSlice';
+import { useDispatch } from 'react-redux';
 const iconLoader = require('../../assets/images/Account/icons/infinity-loader.json');
 export default function PrivateRoute(props: PrivateRouteProps) {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const [isSuccess, setIsSuccess] = useState(false);
 	const UseCase: any = {
 		unautorized: () => {
@@ -21,6 +24,7 @@ export default function PrivateRoute(props: PrivateRouteProps) {
 	};
 	const [verifyLogin, { isLoading }] = useVerifyTokenMutation();
 	useEffect(() => {
+		dispatch(clearAddImages());
 		(async () => {
 			let res: any = await verifyLogin('');
 			switch (res.data.status) {

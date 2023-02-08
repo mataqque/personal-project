@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PublicRoute from './components/TypeRoute/PublicRoute';
 import PrivateRoute from './components/TypeRoute/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { PrivateRoutes } from './routes/PrivateRoutes';
 import { PublicRoutes } from './routes/PublicRoutes';
 import { Header } from './components/helpers/header/header';

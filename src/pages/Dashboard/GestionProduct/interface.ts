@@ -22,4 +22,5 @@ export interface IProductSchema {
 	index_page: boolean;
 	meta_description: string;
 	meta_keywords: string;
+	updated_at?: string;
 }

@@ -7,6 +7,18 @@ export const gestionApiProduct = createApi({
 		baseUrl: URL_BASE_API_BACKEND,
 	}),
 	endpoints: builder => ({
+		updateProduct: builder.mutation({
+			query: data => {
+				return {
+					url: `/products/add`,
+					method: 'POST',
+					body: data,
+					headers: {
+						authorization: `Bearer ${localStorage.getItem('token')}`,
+					},
+				};
+			},
+		}),
 		getListProducts: builder.mutation({
 			query: ({ id, ...patch }) => ({
 				url: `/`,
@@ -50,4 +62,4 @@ export const gestionApiProduct = createApi({
 	}),
 });
 
-export const { useDeleteProductMutation, useDeleteProductsMutation, useGetListProductMutation, useGetListProductsMutation } = gestionApiProduct;
+export const { useDeleteProductMutation, useDeleteProductsMutation, useGetListProductMutation, useGetListProductsMutation, useUpdateProductMutation } = gestionApiProduct;

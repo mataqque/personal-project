@@ -87,7 +87,7 @@ export default function ModalUpload(props: any) {
 					.then(async (res: any) => {
 						let delay = setInterval(async () => {
 							const { data }: any = await getFiles('all');
-							HandleResponse(UpdateFiles, data);
+							HandleResponse(UpdateFiles, data, () => {});
 							clearInterval(delay);
 						}, 2000);
 					});

@@ -15,6 +15,7 @@ import { GridFooter } from '../../../../../components/UI/dataGrid/dataGridFooter
 import { useEffect } from 'react';
 import { IProductSchema } from '../../../GestionProduct/interface';
 import { generateUrl } from '../../../../../components/helpers/helpers';
+import { Link } from 'react-router-dom';
 // let statusDiccionary = ['activo', 'inactivo', 'pendiente', 'rechazado', 'aprobado'];
 // const createUser = () => {
 // 	return {
@@ -34,8 +35,6 @@ import { generateUrl } from '../../../../../components/helpers/helpers';
 // };
 // const fakeUsers = createUsers(0);
 export const DataGridTableProducts = (data: any) => {
-	console.log('datagrid', data);
-
 	useEffect(() => {}, [data]);
 	return (
 		<DataGridStyled className='table-auto w-full text-sm flex flex-col'>
@@ -66,28 +65,28 @@ export const DataGridTableProducts = (data: any) => {
 							</div>
 							<div className='grid-table-cell px-4 py-2 flex items-center'>
 								<div className='content-img w-10 h-10 relative'>
-									<LazyImage src={generateUrl(product.images[0])} radius='3px' />
+									<LazyImage src={product.images.length > 0 ? generateUrl(product.images[0]) : ''} radius='3px' />
 								</div>
 								<div className='flex flex-col ml-4'>
 									<h1 className='text-letter text-base leading-4 mb-1  '>{product.name_product}</h1>
 									<p className='text-letter text-sm leading-3	'>{product.name_product}</p>
 								</div>
 							</div>
-							{/* <div className='grid-table-cell px-4 py-2 w-full flex items-center align-center text-letter'>Sweet Importador de peluches</div>
+							<div className='grid-table-cell px-4 py-2 w-full flex items-center align-center text-letter'>Sweet Importador de peluches</div>
 							<div className='grid-table-cell px-4 py-2 text-sm flex items-center align-center text-letter'>
 								<Status status={'desconocido'} />
 							</div>
-							<div className='grid-table-cell px-4 py-2 text-sm   flex items-center align-center text-letter'>{convertToDate(product.dateUpate)}</div>
+							<div className='grid-table-cell px-4 py-2 text-sm   flex items-center align-center text-letter'>{product.updated_at ? convertToDate(product.updated_at) : ''}</div>
 							<div className='grid-table-cell px-4 py-2 text-sm  w-40 flex items-center align-center'>
 								<div className='flex items-center align-center'>
-									<button className='p-1 flex mr-2 opacity-80	hover:opacity-100'>
+									<Link to={`/dashboard/product/${product.uuid_product}`} className='p-1 flex mr-2 opacity-80	hover:opacity-100'>
 										<IconMask className='icon-edit bg-info w-4 h-4 ' />
-									</button>
+									</Link>
 									<button className='p-1 flex opacity-80	hover:opacity-100'>
 										<IconMask className='icon-delete bg-danger w-5 h-5 ' />
 									</button>
 								</div>
-							</div> */}
+							</div>
 						</div>
 					);
 				})}

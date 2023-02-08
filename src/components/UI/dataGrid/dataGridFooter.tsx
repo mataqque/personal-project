@@ -54,8 +54,12 @@ export const GridFooter = (props: GridFooterProps) => {
 							<IconMask className='icon icon-signal-left bg-letter'></IconMask>
 						</div>
 						<div className='pagination'>
-							{data.map((item, index) => {
-								return <div className={`btn text-letter ${index == 0 ? 'active' : ''}`}>{item}</div>;
+							{data.map((item, index: number) => {
+								return (
+									<div className={`btn text-letter ${index == 0 ? 'active' : ''}`} key={'item-pagination-' + index}>
+										{item}
+									</div>
+								);
 							})}
 						</div>
 						<div className='btn'>

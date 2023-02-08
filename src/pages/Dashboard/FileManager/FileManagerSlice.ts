@@ -35,12 +35,7 @@ const fileManagerSlice = createSlice({
 					return file;
 				}
 			});
-			console.log(getFileSelected);
 			state.selectFile = getFileSelected;
-			// let delay = setInterval(() => {
-			// 	state.selectFile = [];
-			// 	clearInterval(delay);
-			// }, 1000);
 		},
 		onSelect: (state, action) => {
 			if (typeof action.payload === 'function') {
@@ -49,8 +44,11 @@ const fileManagerSlice = createSlice({
 				console.error('onSelect must be a function');
 			}
 		},
+		clearFileSelected: state => {
+			state.selectFile = [];
+		},
 	},
 });
 
-export const { setActiveModal, updateFile, selectFile, uploadFiles, onSelect } = fileManagerSlice.actions;
+export const { setActiveModal, updateFile, selectFile, uploadFiles, onSelect, clearFileSelected } = fileManagerSlice.actions;
 export default fileManagerSlice.reducer;

@@ -9,8 +9,11 @@ const addImagesSlice = createSlice({
 		modifyListImages: (state, action) => {
 			state.listImages = action.payload;
 		},
+		clearAddImages: state => {
+			state.listImages = [];
+		},
 	},
 });
 
-export const { modifyListImages } = addImagesSlice.actions;
+export const { modifyListImages, clearAddImages } = addImagesSlice.actions;
 export default addImagesSlice.reducer;

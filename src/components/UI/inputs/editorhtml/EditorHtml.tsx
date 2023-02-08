@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import './EditorHtml.scss';
 import ResizerLibrary from './script';
 import { IInterfaceEditorHtml } from './interface';
+import { toolbar } from './config';
 export function EditorHtml(props: IInterfaceEditorHtml) {
 	const { initialHtml, className } = props;
 	const editor = useRef(null);
@@ -15,104 +16,18 @@ export function EditorHtml(props: IInterfaceEditorHtml) {
 			console.log(e);
 		},
 	});
-	const [config, setConfig] = useState({
-		toolbar: [
-			{
-				title: 'Tags',
-				type: 'tags',
-				options: [
-					{
-						name: 'Head tags',
-						value: '',
-					},
-					{
-						name: 'paragraph',
-						value: 'p',
-					},
-					{
-						name: 'span',
-						value: 'span',
-					},
-					{
-						name: 'h1',
-						value: 'h1',
-					},
-					{
-						name: 'h2',
-						value: 'h2',
-					},
-					{
-						name: 'h3',
-						value: 'h3',
-					},
-					{
-						name: 'h4',
-						value: 'h4',
-					},
-					{
-						name: 'h5',
-						value: 'h5',
-					},
-					{
-						name: 'h6',
-						value: 'h6',
-					},
-				],
-			},
-			{
-				title: 'Negrita',
-				icon: 'fas fa-bold',
-				type: 'bold',
-			},
-			{
-				title: 'italic',
-				icon: 'fas fa-italic',
-				type: 'italic',
-			},
-			{
-				title: 'strikeThrough',
-				icon: 'fas fa-strikethrough',
-				type: 'strikeThrough',
-			},
-			{
-				title: 'Underline',
-				icon: 'fas fa-underline',
-				type: 'underline',
-			},
-			{
-				title: 'justifyLeft',
-				icon: 'fas fa-align-left',
-				type: 'justifyLeft',
-			},
-			{
-				title: 'justifyCenter',
-				icon: 'fas fa-align-center',
-				type: 'justifyCenter',
-			},
-			{
-				title: 'justifyRight',
-				icon: 'fas fa-align-right',
-				type: 'justifyRight',
-			},
-			{
-				title: 'insertImage',
-				icon: 'fas fa-file-image',
-				type: 'insertImage',
-				pluggin: 'image',
-			},
-		],
-	});
+	const [config, setConfig] = useState({ toolbar });
 	const removeSelected = () => {
 		setSelected(null);
 	};
 	const runCommand = (el: any, commandName: any, arg: any) => {
-		// const selection = window.getSelection();
-		// try {
-		// 	window.getSelection()?.removeAllRanges();
-		// 	window.getSelection()?.addRange(selected.range);
-		// 	document.execCommand(commandName, true, arg);
-		// 	removeSelected();
-		// } catch (err) {}
+		const selection = window.getSelection();
+		try {
+			window.getSelection()?.removeAllRanges();
+			window.getSelection()?.addRange(selected.range);
+			document.execCommand(commandName, true, arg);
+			removeSelected();
+		} catch (err) {}
 	};
 	const MouseEvent = (e: any) => {
 		// var selection = window.getSelection();
@@ -145,7 +60,7 @@ export function EditorHtml(props: IInterfaceEditorHtml) {
 		// setResizer(Resizer);
 	}, []);
 	return (
-		<div className={`Editor-html ${className}`}>
+		<EditorHtml>
 			<div className='toolbar-group'>
 				<div className='toolbar-group-item form-style d-flex'>
 					{config.toolbar.map((item, index) => {
@@ -220,6 +135,7 @@ export function EditorHtml(props: IInterfaceEditorHtml) {
                         <img src="https://as01.epimg.net/diarioas/imagenes/2022/05/29/actualidad/1653826510_995351_1653826595_noticia_normal_recorte1.jpg"/> */}
 				</div>
 			</div>
-		</div>
+
+		</EditorHtml>
 	);
 }

@@ -39,7 +39,7 @@ export function FileManager({ modal = false }: IPropsFileManager) {
 	};
 	const getData = async (type_file: any) => {
 		const { data }: any = await getFiles({ type_file });
-		HandleResponse(UpdateFiles, data);
+		HandleResponse(UpdateFiles, data, () => {});
 	};
 
 	const activeDelete = () => {

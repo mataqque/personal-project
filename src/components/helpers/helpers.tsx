@@ -29,7 +29,8 @@ export const generateUrl = (props: IFile) => {
 	return url;
 };
 
-export const convertToDate = (date: Date) => {
+export const convertToDate = (date: string) => {
+	if (date == undefined) return '';
 	let date_ = new Date(date);
 	return date_.toLocaleDateString('es-Es', { year: 'numeric', month: 'long', day: 'numeric' });
 };

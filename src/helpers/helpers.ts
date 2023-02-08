@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import { IToastNotifyPromise } from './interface';
 
 export const callbackDelay = (callback: Function, delay?: number) => {
 	let delayInterval = setInterval(
@@ -21,11 +22,15 @@ export const ToastNotify = (props: IToast) => {
 	toast(message, options);
 };
 
-export const ToastNotifyPromise = () => {
-	const resolveAfter3Sec = new Promise(resolve => setTimeout(resolve, 3000));
+export const ToastNotifyPromise = ({ message, promise }: IToastNotifyPromise) => {
+	const resolveAfter3Sec = new Promise((resolve: any) => {
+		promise.then((response: any) => {
+			resolve(response);
+		});
+	});
 	toast.promise(resolveAfter3Sec, {
 		pending: 'Conectando con el servidor...',
-		success: 'Tarea terminadá 👌',
+		success: message,
 		error: 'No se concluyó con la tarea 🤯',
 	});
 };
@@ -35,7 +40,7 @@ interface IResponse {
 	data: unknown;
 }
 
-export const HandleResponse = (callback: Function, response: IResponse) => {
+export const HandleResponse = (callback: Function, response: IResponse, callbackError: Function) => {
 	switch (response.status) {
 		case 200:
 			callback(response.data);
@@ -44,7 +49,7 @@ export const HandleResponse = (callback: Function, response: IResponse) => {
 			console.log('unauthorized');
 			break;
 		case 500:
-			console.log('server error');
+			callbackError();
 			break;
 	}
 };
