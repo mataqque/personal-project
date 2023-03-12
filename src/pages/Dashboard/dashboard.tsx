@@ -5,7 +5,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import { destroyToken } from '../../store/globlalSlice/auth/auth.slice';
 import { useDispatch } from 'react-redux';
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Link, NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { toggleSideBar, handleChangeSidebar } from './domain/dashboard.slice';
 import './dashboard.scss';
@@ -15,6 +15,7 @@ import { IconMask } from '../../components/UI/inputs/styled/IconDownStyleSelect'
 import ModalUpload from '../../components/modalUpload/modalUpload';
 import { FileManager } from './FileManager/FileManager';
 import { Modal } from '../../components/UI/GlobalComponents/modal/modal';
+import { IUserData } from '../../store/globlalSlice/user/interface';
 
 function Dashboard(props: any) {
 	const navigate = useNavigate();
@@ -54,12 +55,7 @@ function Dashboard(props: any) {
 								DASHBOARD
 								<div className='icon-menu mask' onClick={() => dispatch(toggleSideBar())}></div>
 							</div>
-							<div className='user'>
-								<div className='content-img'>
-									<img className='profile' src={require('../../assets/images/Dashboard/images/profile.jpg')}></img>
-								</div>
-								<RoleUser />
-							</div>
+							<UserInformation />
 							<div className='sider-bar_bottom scrollAlternateColor'>
 								<div className='sidebar'>
 									{sectionBoton.map((body: any, index: number) => {
@@ -90,12 +86,7 @@ function Dashboard(props: any) {
 					</div>
 					<div className='wrapper'>
 						<div className='nav-wrapper'>
-							<div
-								className='toggle'
-								onClick={() => {
-									dispatch(toggleSideBar());
-								}}
-							>
+							<div className='toggle' onClick={() => dispatch(toggleSideBar())}>
 								<img className='icon' src={require('../../assets/images/Dashboard/icons/menu.svg?url')}></img>
 							</div>
 							<div className='content-links'>
@@ -126,9 +117,7 @@ function Dashboard(props: any) {
 
 export default Dashboard;
 
-function RoleUser() {
-	// const user = useSelector((state: any) => state.usersSlice.userLoggedIn);
-	const user = { name: 'Juan', lastname: 'Perez', role: 'Administrador', username: 'juanperez' };
+function RoleUser({ user }: any) {
 	return (
 		<div className='user-role'>
 			<span className='role text-white'>{user?.role}</span>
@@ -152,9 +141,9 @@ function SectionSidebar(props: any) {
 				{props.body.sections.map((section: any, index: number) => {
 					if (section.subSection == 0) {
 						return (
-							<Link
+							<NavLink
 								to={section?.path ? section?.path : '#'}
-								className={`c-sidebar-nav-title ${section.index == props.sectionActive ? 'active' : ''}`}
+								className={({ isActive }) => `c-sidebar-nav-title ${isActive ? 'active' : ''}`}
 								onClick={() => {
 									props.changeSection(section.index, section.component);
 								}}
@@ -163,7 +152,7 @@ function SectionSidebar(props: any) {
 								<i className={section.icon}></i>
 								<span className='span-title'>{section.title}</span>
 								<IconMask className='icon-signal-right' />
-							</Link>
+							</NavLink>
 						);
 					} else {
 						return (
@@ -202,3 +191,15 @@ function SectionSidebar(props: any) {
 		</div>
 	);
 }
+
+const UserInformation = () => {
+	const dataUser = useSelector((state: any) => state.userSlice.userLoggedIn);
+	return (
+		<div className='user'>
+			<div className='content-img'>
+				<img className='profile' src={require('../../assets/images/Dashboard/images/profile.jpg')}></img>
+			</div>
+			<RoleUser user={dataUser} />
+		</div>
+	);
+};

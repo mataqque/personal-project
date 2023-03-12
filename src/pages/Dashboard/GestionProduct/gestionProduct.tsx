@@ -18,12 +18,15 @@ import { IProductSchema } from './interface';
 import { modifyListImages } from './components/addImagesSlice';
 import { IFile } from '../FileManager/interface/Interface';
 import { HandleResponse, ToastNotifyPromise } from '../../../helpers/helpers';
+import { useGetListCategoriesMutation } from '../GestionAddCategory/GestionAddCategory.Api';
 export const GestionProduct = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const userData = useSelector((state: any) => state.userSlice.userLoggedIn);
 	const images = useSelector((state: any) => state.addImagesSlice.listImages);
 	const id_generated = generateId({ type: 'number' }).toString();
 	const id = useParams<{ id: string }>().id;
+	const [getListCategories, {}] = useGetListCategoriesMutation();
 	const [getProduct, { isSuccess }] = useGetListProductMutation();
 	const [updateProduct, {}] = useUpdateProductMutation();
 	const statusOptions = [
@@ -34,10 +37,15 @@ export const GestionProduct = () => {
 		{ value: '1', label: 'Empresa 1' },
 		{ value: '2', label: 'Empresa 2' },
 	];
-	const categoryOptions = [{ value: '1', label: 'Osos' }];
+	const categoryOptions = [
+		{
+			value: '1',
+			label: 'Categoria 1',
+		},
+	];
 	const [initialValues, setInitialValues] = useState<IProductSchema>({
 		uuid_product: id || id_generated,
-		uuid_autor: '1675838495788',
+		uuid_autor: userData.uuid_user,
 		name_product: '',
 		description: '',
 		id_empresa: '',
@@ -80,7 +88,12 @@ export const GestionProduct = () => {
 		const { data }: any = await getProduct({ id });
 		HandleResponse(handleResponse, data, handleErrorHttp);
 	};
+	const getCategories = async (pageIndex: number) => {
+		let res = await getListCategories({ pageIndex });
+		console.log(res);
+	};
 	useEffect(() => {
+		getCategories(1);
 		if (id != undefined) {
 			getDataProduct();
 		}
@@ -103,7 +116,9 @@ export const GestionProduct = () => {
 									</div>
 									<div className='content-input f-column w-100 mb-4'>
 										<label className='flex text-letter mb-2'>Descripción</label>
-										<EditorHtml className='mini' getHtml={getHtmlofEditor} initialHtml={initialValues.description}></EditorHtml>
+										<div className='h-80'>
+											<EditorHtml className='mini' getHtml={getHtmlofEditor} initialHtml={initialValues.description}></EditorHtml>
+										</div>
 									</div>
 									<div className='mb-4'>
 										<span className='flex text-letter mb-2'>Empresa</span>
@@ -137,7 +152,7 @@ export const GestionProduct = () => {
 										</div>
 									</div>
 								</div>
-								<div className='column-2 form-style gestion-links d-flex flex-wrap scroll h-full'>
+								<div className='column-2 form-style gestion-links d-flex flex-wrap scroll h-full w-full'>
 									<AddImages />
 								</div>
 								<div className='column-3 form-style gestion-links d-flex flex-wrap scroll h-full w-full'>

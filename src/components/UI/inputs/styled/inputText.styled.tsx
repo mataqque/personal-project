@@ -43,7 +43,7 @@ export const InputTextStyled = styled.input`
 		font-size: 0.9rem;
 	}
 	&.--invalid {
-		border-color: red !important;
+		border-color: var(--danger) !important;
 		& ~ .label-accept {
 			border-color: red !important;
 		}
@@ -52,7 +52,7 @@ export const InputTextStyled = styled.input`
 		}
 	}
 	&.--valid {
-		border-color: #00cc00 !important;
+		border-color: var(--success) !important;
 		& ~ .label-accept {
 			border-color: #00cc00 !important;
 		}

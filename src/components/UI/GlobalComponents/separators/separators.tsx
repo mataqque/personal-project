@@ -5,6 +5,7 @@ export const SeparatorHorizontal = styled.div`
 	height: 1px;
 	background-color: #dedddf;
 	margin: 1rem 0;
+	opacity: ${(props: { opacity?: number }) => props.opacity || 1};
 `;
 
 export const SeparatorVertical = styled.div`

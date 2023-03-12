@@ -1,0 +1,16 @@
+.main-bot {
+	.content-img-qr {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid #cfcfcf;
+		width: max-content;
+		border-radius: 1rem;
+		overflow: hidden;
+		margin-bottom: 1rem;
+		.image-qr {
+			width: 20rem;
+			height: 20rem;
+		}
+	}
+}

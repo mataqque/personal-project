@@ -14,7 +14,7 @@ export const InputSwitch = (props: IInputSwitchProps) => {
 		<InputCheckboxStyled className={`content-input switch ${props.className}`} color={color}>
 			<div className={`content-sub-input`}>
 				<InputTextStyled type='checkbox' defaultChecked={defaultValue} id={inputID} {...checkableBoolProps(name, ``, form)} ref={checkeable} />
-				<label className='toggle-switch mr-1' htmlFor={inputID}>
+				<label className='toggle-switch' htmlFor={inputID}>
 					<label className='handle-toggle' htmlFor={inputID}></label>
 				</label>
 			</div>

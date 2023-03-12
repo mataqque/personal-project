@@ -23,6 +23,7 @@ export const StyledStatus = styled.div`
 		color: #3667fb;
 	}
 `;
+
 interface IStatus {
 	color?: string;
 	status: string;

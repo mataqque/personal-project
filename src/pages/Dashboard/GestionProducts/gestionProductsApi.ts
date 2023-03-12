@@ -8,15 +8,28 @@ export const gestionProductsApi = createApi({
 	}),
 	endpoints: builder => ({
 		getListProducts: builder.mutation({
-			query: () => ({
-				url: `/products/getProducts`,
-				method: 'GET',
-				headers: {
-					authorization: `Bearer ${localStorage.getItem('token')}`,
-				},
-			}),
+			query: ({ pageIndex }) => {
+				return {
+					url: `/products/getProducts/${pageIndex}`,
+					method: 'GET',
+					headers: {
+						authorization: `Bearer ${localStorage.getItem('token')}`,
+					},
+				};
+			},
+		}),
+		deleteProduct: builder.mutation({
+			query: ({ uuid }) => {
+				return {
+					url: `/products/delete/${uuid}`,
+					method: 'GET',
+					headers: {
+						authorization: `Bearer ${localStorage.getItem('token')}`,
+					},
+				};
+			},
 		}),
 	}),
 });
 
-export const { useGetListProductsMutation } = gestionProductsApi;
+export const { useGetListProductsMutation, useDeleteProductMutation } = gestionProductsApi;

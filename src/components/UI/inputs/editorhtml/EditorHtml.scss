@@ -3,75 +3,6 @@
 	overflow-y: auto;
 }
 .Editor-html {
-	width: 100%;
-	min-height: calc(100vh - 17rem);
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	--border: #dddada;
-	border: 1px solid var(--border);
-	border-radius: 1rem;
-	.poligone {
-		position: absolute;
-		background-color: rgba(255, 0, 0, 0.644);
-		z-index: 2;
-		.coord {
-			width: 14px;
-			height: 14px;
-			background-color: rgba(255, 0, 0, 0.356);
-			position: absolute;
-			user-select: none;
-		}
-		.left-top {
-			top: -7px;
-			left: -7px;
-			cursor: nw-resize;
-		}
-		.right-top {
-			top: -7px;
-			right: -7px;
-			cursor: sw-resize;
-		}
-		.left-bottom {
-			bottom: -7px;
-			left: -7px;
-			cursor: ne-resize;
-		}
-		.rigth-bottom,
-		.prove {
-			bottom: -7px;
-			right: -7px;
-			cursor: se-resize;
-		}
-		.config {
-			opacity: 0;
-			position: absolute;
-			top: 1rem;
-			left: 0;
-			right: 0;
-			bottom: auto;
-			margin: auto;
-			width: max-content;
-			height: 3rem;
-			border-radius: 1rem;
-			background-color: white;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 0.5rem 1rem;
-			transition: 0.5s;
-			cursor: pointer;
-			i {
-				margin-right: 0.5rem;
-			}
-		}
-		&:hover {
-			.config {
-				opacity: 1;
-			}
-		}
-	}
 	.toolbar-group {
 		width: 100%;
 		border-bottom: 1px solid var(--border);
@@ -91,6 +22,7 @@
 				border-color: var(--borderinput);
 				border-style: solid;
 				border-width: 1px;
+				cursor: pointer;
 			}
 			.content-input {
 				width: 100%;

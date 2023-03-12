@@ -9,22 +9,25 @@ import { useVerifyTokenMutation } from '../../store/apis/authApi.api';
 import { callbackDelay } from '../../helpers/helpers';
 import { clearAddImages } from '../../pages/Dashboard/GestionProduct/components/addImagesSlice';
 import { useDispatch } from 'react-redux';
+import { saveDataUser } from '../../store/globlalSlice/user/user.slice';
 const iconLoader = require('../../assets/images/Account/icons/infinity-loader.json');
 export default function PrivateRoute(props: PrivateRouteProps) {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [isSuccess, setIsSuccess] = useState(false);
+	const [verifyLogin, { isLoading }] = useVerifyTokenMutation();
 	const UseCase: any = {
 		unautorized: () => {
 			navigate('/account/login');
 		},
 		authorized: (res: any) => {
+			const { user } = res.data;
+			dispatch(saveDataUser(user));
 			callbackDelay(() => setIsSuccess(true), 3000);
 		},
 	};
-	const [verifyLogin, { isLoading }] = useVerifyTokenMutation();
-	useEffect(() => {
-		dispatch(clearAddImages());
+	const updateCredentials = async () => {
+		// dispatch(clearAddImages());
 		(async () => {
 			let res: any = await verifyLogin('');
 			switch (res.data.status) {
@@ -35,6 +38,9 @@ export default function PrivateRoute(props: PrivateRouteProps) {
 					UseCase.unautorized(res);
 			}
 		})();
+	};
+	useEffect(() => {
+		updateCredentials();
 	}, []);
 	return (
 		<>

@@ -9,6 +9,7 @@ import { IconMask } from '../UI/inputs/styled/IconDownStyleSelect';
 import { useGetFilesMutation } from '../../pages/Dashboard/FileManager/FileManager.api';
 import { IFileState } from '../../pages/Dashboard/FileManager/interface/Interface';
 import { HandleResponse } from '../../helpers/helpers';
+import { Title } from '../../pages/Dashboard/StyledComponent/titles';
 
 interface IFiles {
 	uuid: number | string;
@@ -108,7 +109,7 @@ export default function ModalUpload(props: any) {
 					}}
 				/>
 				<div className='features'>
-					<h3 className='title-component bold text-center'>Sube tus archivos</h3>
+					<Title className='text-center bold text-center flex mb-2 mt-2 text-center w-full justify-center'>Sube tus archivos</Title>
 					<span className='sub-title'>JPG,PNG,SVG,PDF,DOCX,GIF. peso esperado menor a 3mb</span>
 					<div className='content-dropzone'>
 						<Dropzone onDrop={onDrop}>

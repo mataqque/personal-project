@@ -14,9 +14,9 @@ export const Banner = () => {
 		pauseOnHover: false,
 	};
 	const banners = [
-		{ img: require('../../../assets/images/home/images/Portada-web.jpg') },
-		{ img: require('../../../assets/images/home/images/Portada-web.jpg') },
-		{ img: require('../../../assets/images/home/images/Portada-web.jpg') },
+		{ img: require('../../../assets/images/home/images/banner-san-valentin.jpg') },
+		{ img: require('../../../assets/images/home/images/banner-san-valentin.jpg') },
+		{ img: require('../../../assets/images/home/images/banner-san-valentin.jpg') },
 	];
 	return (
 		<section>

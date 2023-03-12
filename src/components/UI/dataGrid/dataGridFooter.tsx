@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { IconMask } from '../inputs/styled/IconDownStyleSelect';
+import { useState } from 'react';
 interface GridFooterProps {
-	data: any;
+	records: {
+		cant: number;
+		limit: number;
+	};
+	pageIndex?: Function;
 }
 const GridFooterStyled = styled.div`
 	height: 4.5rem;
@@ -44,7 +49,9 @@ const GridFooterStyled = styled.div`
 `;
 
 export const GridFooter = (props: GridFooterProps) => {
-	const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+	const { records, pageIndex = () => {} } = props;
+	const cantItems = Array.from({ length: Math.ceil(records.cant / records.limit) }, () => []);
+	const [btnIndex, setBtnIndex] = useState(1);
 	return (
 		<GridFooterStyled className='grid-footer'>
 			<div className='px-4 flex items-center justify-between w-full'>
@@ -54,10 +61,17 @@ export const GridFooter = (props: GridFooterProps) => {
 							<IconMask className='icon icon-signal-left bg-letter'></IconMask>
 						</div>
 						<div className='pagination'>
-							{data.map((item, index: number) => {
+							{cantItems.map((item, index: number) => {
 								return (
-									<div className={`btn text-letter ${index == 0 ? 'active' : ''}`} key={'item-pagination-' + index}>
-										{item}
+									<div
+										className={`btn text-letter ${index + 1 == btnIndex ? 'active' : ''}`}
+										key={'item-pagination-' + index}
+										onClick={() => {
+											pageIndex(index + 1);
+											setBtnIndex(index + 1);
+										}}
+									>
+										{index + 1}
 									</div>
 								);
 							})}
@@ -67,7 +81,7 @@ export const GridFooter = (props: GridFooterProps) => {
 						</div>
 					</div>
 				</div>
-				<div className='all text-letter'>numero de registros: {data.length}</div>
+				<div className='all text-letter'>numero de registros: {records.cant}</div>
 			</div>
 		</GridFooterStyled>
 	);

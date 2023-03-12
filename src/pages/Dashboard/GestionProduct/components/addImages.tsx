@@ -8,6 +8,7 @@ import { generateUrl } from '../../../../components/helpers/helpers';
 import { arrayMove } from 'react-sortable-hoc';
 import { modifyListImages } from './addImagesSlice';
 import { useGetListProductsMutation } from '../../GestionProducts/gestionProductsApi';
+import { VisorImg } from '../../StyledComponent/visorImgStyle';
 
 function ItemSortableName({ item }: any) {
 	return (
@@ -48,12 +49,11 @@ export const AddImages = (props: any) => {
 				<div className='gestion-links overflow-hidden flex flex-col'>
 					<div className='content-group content-group-1'>
 						<div className='list sublinks'>
-							<div className='visor-img text-letter'>{ImageVisor ? <LazyImage src={generateUrl(ImageVisor)} radius='4px' /> : 'Visualizador de las imagenes del producto.'}</div>
+							<VisorImg className='text-letter'>{ImageVisor ? <LazyImage src={generateUrl(ImageVisor)} radius='4px' /> : 'Visualizador de las imagenes del producto.'}</VisorImg>
 							<div className='group-info mb-05 flex mb-2'>
 								<span className='name text-letter'>Nombre</span>
 								<span className='accions text-letter'>Acciones</span>
 							</div>
-
 							{images.length > 0 ? (
 								<GlobalSortable
 									//@ts-ignore

@@ -6,10 +6,10 @@ import { useRef, useState } from 'react';
 import iconSearch from '../../..//assets/images/global/icons/search.svg?url';
 
 export const InputText = (props: IInputProps) => {
-	const { title, name, placeholder, form, ...rest } = props;
+	const { title = '', name, placeholder, form, ...rest } = props;
 	return (
 		<div className={`content-input  ${rest?.className ? rest.className : ''}`}>
-			{title && <label>{title}</label>}
+			{title && <label className='text-letter mb-1 flex'>{title}</label>}
 			<div className={`content-sub-input ${props.icon ? 'include-icon' : ''}`}>
 				<InputTextStyled type={props.type || 'text'} placeholder={placeholder || ''} defaultValue={rest.defaultValue} {...setInputProps(name, `input`, form)} />
 				{props.icon && <IconInput icon={props.icon}></IconInput>}

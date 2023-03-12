@@ -31,6 +31,14 @@ export default function RoutesDom(props: any): JSX.Element {
 					<Route path='product/:id' element={PrivateRoutes.GestionProduct} />
 					<Route path='gestion-users' element={PrivateRoutes.GestionUsers} />
 					<Route path='gestion-user' element={PrivateRoutes.GestionUser} />
+					<Route path='gestion-forms' element={PrivateRoutes.GestionForms} />
+					<Route path='custom-form' element={PrivateRoutes.GestionForm} />
+					<Route path='gestion-slider' element={PrivateRoutes.GestionForm} />
+					<Route path='form/:id' element={PrivateRoutes.GestionForm} />
+					<Route path='categorias-y-etiquetas' element={PrivateRoutes.GestionCategoriesandtags} />
+					<Route path='add-category' element={PrivateRoutes.GestionAddCategory} />
+					<Route path='categoria/:id' element={PrivateRoutes.GestionAddCategory} />
+					<Route path='bot' element={PrivateRoutes.Bot} />
 				</Route>
 			</Routes>
 		</Router>

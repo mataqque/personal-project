@@ -56,7 +56,7 @@ export default function GestionUsers(props: any) {
 			<div className='flex bg-white'>
 				<div className='features-auto lg:w-1/2'>
 					<h2 className='title-component bold mb-1 text-secondary text-2xl text-letter IBMPlexSans-Bold '>Información del usuario</h2>
-					<p className='paragraph dark:text-gray-300 mb-4'>En esta sección podrá ver la información del usuario, editarla y actualizarla.</p>
+					<p className='paragraph'>En esta sección podrá ver la información del usuario, editarla y actualizarla.</p>
 					<div className='flex flex-row w-full items-center mb-4'>
 						<div className='flex justify-center items-center mr-2'>
 							<div className='flex sm:mr-2 md:mr-4'>

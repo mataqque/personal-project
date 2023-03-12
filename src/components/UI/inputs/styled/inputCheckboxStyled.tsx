@@ -37,7 +37,7 @@ export const InputCheckboxStyled = styled.div`
 			left: 0px;
 			transform: translateX(0%);
 			will-change: left;
-			height: 19px;
+			height: 100%;
 			width: 19px;
 			padding: 5px;
 			overflow: hidden;
@@ -76,13 +76,12 @@ export const InputCheckboxStyledSm = styled.div`
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
-		height: 20px;
+		height: 21px;
 		width: 36px;
 		min-width: 0px;
 		background-color: #cbd6e2;
 		border-radius: 3px;
 		transition: 0.3s;
-		padding: 3px;
 		.handle-toggle {
 			position: relative;
 			top: 0px;
@@ -91,6 +90,7 @@ export const InputCheckboxStyledSm = styled.div`
 			will-change: left;
 			height: 15px;
 			max-height: 15px;
+			left: 3px;
 			width: 15px;
 			overflow: hidden;
 			background-color: white;

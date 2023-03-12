@@ -27,13 +27,6 @@ function GestionUsuarios(props: any) {
 				<ButtonBase className='border-bordersky'>Cancelar seleccion</ButtonBase>
 			</div>
 			<GridTableUsers />
-			{/* <DataGrid data={fakeUsers} /> */}
-			{/* <form className="form-style">
-                <div className="content-input">
-                    <label className="form-label">Usuario</label>
-                    <input type="text" className="input-high" id="username" placeholder="Ingresa el usuario"></input>
-                </div>
-            </form> */}
 		</div>
 	);
 }

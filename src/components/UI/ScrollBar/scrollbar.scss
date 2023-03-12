@@ -4,5 +4,17 @@
 	height: 100%;
 	width: 4px;
 	border-radius: 1rem;
-	background-color: var(--primary);
+	background-color: var(--success);
+	opacity: 0.8;
+	transition: 0.2s;
+}
+.scroll-smooth {
+	.content-scrollbar {
+		opacity: 0;
+	}
+	&:hover {
+		.content-scrollbar {
+			opacity: 0.8;
+		}
+	}
 }

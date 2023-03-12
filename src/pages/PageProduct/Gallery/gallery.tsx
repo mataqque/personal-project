@@ -1,9 +1,17 @@
 import { Magnifier, GlassMagnifier, SideBySideMagnifier, PictureInPictureMagnifier, MOUSE_ACTIVATION, TOUCH_ACTIVATION } from 'react-image-magnifiers';
 const image = require('../../../assets/images/global/images/dog.jpg');
+const image1 = require('../../../assets/images/global/images/compress-WhatsApp Image 2023-02-20 at 12.webp');
+const image2 = require('../../../assets/images/global/images/compress-WhatsApp Image 2023-02-14 at 9.webp');
+import { useState } from 'react';
 import './gallery.scss';
 import { IconMask } from '../../../components/UI/inputs/styled/IconDownStyleSelect';
 export const GalleryPageProduct = () => {
+	const [imageSelected, setImageSelected] = useState(image);
+	const list = [image, image1, image2];
 	const switchSides = true;
+	const changeImage = (item: any) => {
+		setImageSelected(item);
+	};
 	return (
 		<section className='gallery'>
 			<div className='container flex gap-8'>
@@ -12,8 +20,8 @@ export const GalleryPageProduct = () => {
 						<SideBySideMagnifier
 							className='input-position'
 							style={{ order: switchSides ? '1' : '0' }}
-							imageSrc={image}
-							largeImageSrc={image}
+							imageSrc={imageSelected}
+							largeImageSrc={imageSelected}
 							alwaysInPlace={true}
 							overlayOpacity={0.5}
 							switchSides={switchSides}
@@ -25,18 +33,13 @@ export const GalleryPageProduct = () => {
 						/>
 					</div>
 					<div className='controls flex gap-4'>
-						<div className='content-img'>
-							<img src={image} alt='' />
-						</div>
-						<div className='content-img'>
-							<img src={image} alt='' />
-						</div>
-						<div className='content-img'>
-							<img src={image} alt='' />
-						</div>
-						<div className='content-img'>
-							<img src={image} alt='' />
-						</div>
+						{list.map((item, index) => {
+							return (
+								<div className='content-img' onClick={() => changeImage(item)}>
+									<img src={item} alt='' />
+								</div>
+							);
+						})}
 					</div>
 				</div>
 				<div className='w-1/2'>

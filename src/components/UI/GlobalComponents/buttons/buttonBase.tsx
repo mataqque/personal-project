@@ -7,9 +7,9 @@ interface IButtonBase {
 
 export const ButtonBase = styled.button`
 	height: ${(props: any) => {
-		if (props.type === 'sm') return '1.5rem';
-		if (props.type === 'md') return '2.5rem';
-		if (props.type === 'lg') return '3.5rem';
+		if (props.typeBtn === 'sm') return '1.5rem';
+		if (props.typeBtn === 'md') return '2.5rem';
+		if (props.typeBtn === 'lg') return '3.5rem';
 		return '2.5rem'; // valor por defecto si no se especifica type
 	}};
 	width: max-content;
@@ -23,6 +23,63 @@ export const ButtonBase = styled.button`
 	justify-content: center;
 	padding: 0.5rem 1.2rem;
 	min-width: 4rem;
+`;
+
+export const ButtonBaseFull = styled.button`
+	height: ${(props: any) => {
+		if (props.type === 'sm') return '1.5rem';
+		if (props.type === 'md') return '2.5rem';
+		if (props.type === 'lg') return '3.5rem';
+		return '2.5rem'; // valor por defecto si no se especifica type
+	}};
+	width: 100%;
+	border-radius: ${(props: IButtonBase) => {
+		return props.rounded ? '100rem' : '7px';
+	}};
+	border-width: 1px;
+	border-style: solid;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 1.2rem;
+	min-width: 4rem;
+`;
+export const ButtonBaseFullY = styled.button`
+	width: 100%;
+	border-radius: ${(props: IButtonBase) => {
+		return props.rounded ? '100rem' : '7px';
+	}};
+	border-width: 1px;
+	border-style: solid;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 1.2rem;
+	min-width: 4rem;
+`;
+
+export const ButtonBaseRadio = styled.button`
+	height: ${(props: any) => {
+		if (props.type === 'sm') return '1.5rem';
+		if (props.type === 'md') return '2.5rem';
+		if (props.type === 'lg') return '3.5rem';
+		return '2.5rem'; // valor por defecto si no se especifica type
+	}};
+	min-width: ${(props: any) => {
+		if (props.type === 'sm') return '1.5rem';
+		if (props.type === 'md') return '2.5rem';
+		if (props.type === 'lg') return '3.5rem';
+		return '2.5rem'; // valor por defecto si no se especifica type
+	}};
+	border-radius: ${(props: IButtonBase) => {
+		return props.rounded ? '100rem' : '7px';
+	}};
+	border-width: 1px;
+	border-style: solid;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.5rem 0.5rem;
 `;
 
 export const ButtonOutline = styled(ButtonBase)`

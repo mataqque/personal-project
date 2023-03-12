@@ -12,6 +12,11 @@ import { IFileState } from './interface/Interface';
 import { InformationFile } from './components/InfomationFile/informationFile';
 import styled from 'styled-components';
 import { closeModal } from '../../../components/UI/GlobalComponents/modal/modalSlice';
+import ScrollBar from '../../../components/UI/ScrollBar/scrollbar';
+import { initProveGeneric } from '../../../store/interface';
+import { MouseSelect } from '../../../components/UI/MouseSelect/MouseSelectet';
+import { observerPoligone } from './observer/observer';
+
 interface IPropsFileManager {
 	frase?: string;
 	onEvent?: any;
@@ -37,6 +42,7 @@ export function FileManager({ modal = false }: IPropsFileManager) {
 	const UpdateFiles = (response: IFileState) => {
 		dispatch(updateFile(response));
 	};
+	initProveGeneric();
 	const getData = async (type_file: any) => {
 		const { data }: any = await getFiles({ type_file });
 		HandleResponse(UpdateFiles, data, () => {});
@@ -70,24 +76,19 @@ export function FileManager({ modal = false }: IPropsFileManager) {
 		if (data.status == 200) {
 			getData('all');
 		}
-		// HandleResponse(UpdateFiles, data);
-		// let checkables = getCheckables();
-		// axios
-		// 	.post(`http://localhost:3000/api/v1/files/delete`, checkables, {
-		// 		headers: {
-		// 			Authorization: `Bearer ${localStorage.getItem('token')}`,
-		// 		},
-		// 	})
-		// 	.then((res: any) => {
-		// 		UpdateFiles('all');
-		// 	});
+	};
+	const mouseDown = (e: any) => {
+		observerPoligone.next(e);
+	};
+	const mouseUp = (e: any) => {
+		observerPoligone.next(e);
 	};
 	useEffect(() => {
 		getData('all');
 	}, []);
 	return (
 		<FileManagerStyled className={`component_file_manager  features bg-white ${modal == true ? 'type-modal' : ''}`}>
-			<Title className='bold mb-1'>Administrador de archivos</Title>
+			<Title className='bold mb-1 text-letter'>Administrador de archivos</Title>
 			<p className='paragraph mb-3'>Sube tus archivos mp3, mp4, jpg ,png, webp, svg. etc, los archivos deben pesar menos de 10mb, no se admiten archivos con peso mayor a 100mb</p>
 			<div className='content-tab flex py-3 border-y border-slate-200 d-flex mb-4'>
 				{modal == false ? <Filters /> : null}
@@ -100,12 +101,13 @@ export function FileManager({ modal = false }: IPropsFileManager) {
 					</div>
 				) : null}
 				<div className='flex tab-col w-max cursor-pointer ' onClick={() => deleteFiles()} ref={btnRef}>
-					<div className='tab c-pointer h-11 flex justify-center items-center px-4  rounded-5  bg-danger text-white border opacity bg-danger border-danger'>Delete</div>
+					<div className='tab c-pointer h-11 flex justify-center items-center px-4  rounded-5  bg-danger text-white border opacity bg-danger border-danger'>Eliminar</div>
 				</div>
 			</div>
 			<div className='content-gallery'>
-				<form className='content-all-images scroll' onChange={() => activeDelete()}>
-					{/* <ScrollBar /> */}
+				<form className='content-all-images scroll' onChange={() => activeDelete()} onMouseDown={mouseDown} onMouseUp={mouseUp}>
+					{/* <MouseSelect /> */}
+					<ScrollBar />
 					{filesData.map((file: any, index: number) => {
 						return <File file={file} key={'file-' + index} index={'file-' + index} modal={modal} />;
 					})}
@@ -113,7 +115,7 @@ export function FileManager({ modal = false }: IPropsFileManager) {
 				{modal == false ? (
 					<div className='info'>
 						<h3 className='title-component bold IBMPlexSans-Bold text-base'>Información de archivo</h3>
-						{/* <InformationFile /> */}
+						<InformationFile />
 					</div>
 				) : null}
 			</div>

@@ -18,6 +18,7 @@ export interface IProductSchema {
 	images: IFile[];
 	videos: Array<object>;
 	url: string;
+	proveedor?: string;
 	status: boolean;
 	index_page: boolean;
 	meta_description: string;

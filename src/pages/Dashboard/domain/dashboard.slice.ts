@@ -88,6 +88,14 @@ const initialState = {
 					component: null,
 					subSection: [],
 				},
+				{
+					icon: 'fas fa-list-ul',
+					title: 'Gestión de Sliders',
+					index: 10,
+					path: '/dashboard/gestion-slider',
+					component: null,
+					subSection: [],
+				},
 			],
 		},
 		{
@@ -101,7 +109,7 @@ const initialState = {
 						{
 							icon: 'fas fa-circle',
 							title: 'Formularios',
-							path: '/dashboard/CustomForms',
+							path: '/dashboard/gestion-forms',
 							component: '',
 						},
 					],
@@ -115,7 +123,7 @@ const initialState = {
 					icon: 'fas fa-robot',
 					title: 'Bot de Whatsapp',
 					index: 10,
-					path: '/dashboard/Botwhatsapp',
+					path: '/dashboard/bot',
 					subSection: [],
 				},
 			],

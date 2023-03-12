@@ -63,7 +63,7 @@ export const LazyImage = (props: IImageProps) => {
 		observer.observe(ContentImg.current as Element);
 	}, [loadImage]);
 	return (
-		<ImageStyled className={`image-default ${props.class}`} ref={ContentImg} radius={props.radius}>
+		<ImageStyled className={`image-default ${props.class || ''}`} ref={ContentImg} radius={props.radius}>
 			<div className='content-img'>{loadImage == false ? <Skeleton /> : <img className='img' src={routeFile}></img>}</div>
 		</ImageStyled>
 	);

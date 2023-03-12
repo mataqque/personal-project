@@ -2,7 +2,6 @@ import { lazy, Suspense } from 'react';
 import { Login } from '../pages/Account/login/login';
 import { ErrorBoundary } from './Boundary';
 import { StyledEngineProvider } from '@mui/material/styles';
-
 type Props = {
 	children: React.ReactNode;
 };
@@ -43,6 +42,36 @@ const GestionProduct = lazy(
 			return { default: module.GestionProduct };
 		})
 );
+const GestionForms = lazy(
+	async () =>
+		await import(/* webpackChunkName:"GestionForms" */ '../pages/Dashboard/GestionForms/GestionForms').then(module => {
+			return { default: module.GestionForms };
+		})
+);
+const GestionForm = lazy(
+	async () =>
+		await import(/* webpackChunkName:"GestionForms" */ '../pages/Dashboard/GestionForm/gestionForm').then(module => {
+			return { default: module.GestionForm };
+		})
+);
+const TagsAndCategories = lazy(
+	async () =>
+		await import(/* webpackChunkName:"TagsAndCategories" */ '../pages/Dashboard/tagsycategorias/tagsycategorias').then(module => {
+			return { default: module.TagsAndCategories };
+		})
+);
+const GestionAddCategory = lazy(
+	async () =>
+		await import(/* webpackChunkName:"GestionAddCategory" */ '../pages/Dashboard/GestionAddCategory/GestionAddCategory').then(module => {
+			return { default: module.GestionAddCategory };
+		})
+);
+const Bot = lazy(
+	async () =>
+		await import(/* webpackChunkName:"Bot" */ '../pages/Dashboard/Bot/bot').then(module => {
+			return { default: module.Bot };
+		})
+);
 
 function Component(props: Props) {
 	return (
@@ -81,6 +110,31 @@ export const PrivateRoutes = {
 	GestionUsers: (
 		<Component>
 			<GestionUsers />
+		</Component>
+	),
+	GestionForms: (
+		<Component>
+			<GestionForms />
+		</Component>
+	),
+	GestionForm: (
+		<Component>
+			<GestionForm />
+		</Component>
+	),
+	GestionCategoriesandtags: (
+		<Component>
+			<TagsAndCategories />
+		</Component>
+	),
+	GestionAddCategory: (
+		<Component>
+			<GestionAddCategory />
+		</Component>
+	),
+	Bot: (
+		<Component>
+			<Bot />
 		</Component>
 	),
 };

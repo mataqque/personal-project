@@ -18,7 +18,6 @@ const fileManagerSlice = createSlice({
 	initialState,
 	reducers: {
 		setActiveModal: (state, action) => {
-			console.log(action.payload);
 			state.activeModal = action.payload;
 		},
 		updateFile: (state, action) => {

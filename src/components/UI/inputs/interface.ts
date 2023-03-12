@@ -56,7 +56,9 @@ export interface InputDateRangeProps {
 
 // interface for input radio
 export interface IInputRadioProps {
+	value: string | number;
 	name: string;
+	index: number;
 	form?: any;
 	defaultValue?: string;
 	className?: string;

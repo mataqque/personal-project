@@ -63,8 +63,15 @@ export const AddPageSchema = (values: any) =>
 	});
 export const LoginSchema = (values: any) =>
 	Yup.object().shape({
-		email: Yup.string().email().required(),
+		email: Yup.string().required(),
 		password: Yup.string().required(),
+	});
+
+export const addSubFormCategorySchema = (values: any) =>
+	Yup.object().shape({
+		name_subcategory: Yup.string().required(),
+		enabled: Yup.boolean().required(),
+		description: Yup.string().required(),
 	});
 
 export const componentsSchema = (values: any) =>

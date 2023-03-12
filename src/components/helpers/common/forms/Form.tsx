@@ -16,6 +16,14 @@ export const FormContainer = ({ initialValues, validationSchema, onSubmit, child
 	);
 };
 
+export const FormContainerDinamic = ({ initialValues, validationSchema, onSubmit, children }: FormProps) => {
+	return (
+		<Formik enableReinitialize initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+			{children}
+		</Formik>
+	);
+};
+
 export default function validate(getValidationSchema: any) {
 	return (values: any) => {
 		const validationSchema = getValidationSchema(values);
@@ -45,7 +53,7 @@ const handleValid = (e: any) => {
 export const setInputProps = (name: string, classes: string, { errors, touched, handleChange, handleBlur }: any) => {
 	return {
 		name: name,
-		className: `${classes} ${errors[name] && touched[name] ? '--invalid' : ''}`,
+		className: `${classes} ${errors[name] && touched[name] && '--invalid'}`,
 		onChange: (e: any) => {
 			handleChange(e);
 			handleValid(e);

@@ -11,6 +11,7 @@ import { ILogin } from './interfaces/login.interface';
 import { ParametersForm } from '../interfaces/interface';
 import { ButtonSubmit } from './components/ButtonSubmit.styled';
 import eye from '../../../assets/images/Account/icons/eye-svg.svg?url';
+import person from '../../../assets/images/Account/icons/user.svg?url';
 import { LinkComponentRegister, ShowErrorLogin } from '../components/linkcomponent';
 import { FormStyled } from '../../../components/UI/GlobalComponents/Form/form';
 
@@ -50,7 +51,7 @@ export const Login: React.FunctionComponent = () => {
 				<title>Login</title>
 			</Helmet>
 			<main className='login'>
-				<h1 className='text-center c-letter title  '>Acceder a plataforma</h1>
+				<h1 className='text-center c-letter title'>Acceder a plataforma</h1>
 				<p className='paragraph text-center mb-4'>Ingresa tu datos para iniciar sesión</p>
 				<FormContainer initialValues={initialValues} validationSchema={LoginSchema} onSubmit={handleSubmit}>
 					{(form: any) => {
@@ -58,7 +59,7 @@ export const Login: React.FunctionComponent = () => {
 						return (
 							<FormStyled onSubmit={handleSubmit} autoComplete={'off'}>
 								<div className='mb-2'>
-									<InputText name='email' placeholder='Email' form={form} icon={eye} />
+									<InputText name='email' placeholder='Email' form={form} icon={person} />
 								</div>
 								<div className='mb-2'>
 									<InputTextPassword name='password' placeholder='Contraseña' form={form} icon={eye} />
