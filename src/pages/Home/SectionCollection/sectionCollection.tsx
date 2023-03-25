@@ -7,6 +7,7 @@ export const SectionCollection = () => {
 	const [getProduct, {}] = useGetProductsMutation();
 	const updateData = async () => {
 		const { data }: any = await getProduct(1);
+		console.log('data', data);
 		setTargetProducts(data.data);
 	};
 	useEffect(() => {
