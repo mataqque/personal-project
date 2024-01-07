@@ -49,7 +49,7 @@ export default function ModalUpload(props: any) {
 					}
 				});
 				axios
-					.post('http://localhost:3000/api/v1/files/upload/', formData, {
+					.post('http://localhost:3001/api/v1/files/upload/', formData, {
 						headers: {
 							'Content-Type': 'multipart/form-data',
 							Authorization: 'Bearer ' + localStorage.getItem('token'),

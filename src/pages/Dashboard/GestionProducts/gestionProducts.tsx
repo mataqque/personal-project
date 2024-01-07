@@ -68,7 +68,7 @@ export const GestionProducts = () => {
 		data: fakeUsers,
 	};
 	useEffect(() => {
-		update(1);
+		// update(1);
 	}, []);
 	return (
 		<main className='features bg-white gestion-products'>
